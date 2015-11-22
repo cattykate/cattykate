@@ -20,9 +20,9 @@ public:
 	string group;
 	string form_of_study;
 	vector<int> score;
-
+	float avg; 
 	void print_all_inform();
-	float get_average_score();
+	void get_average_score();
 	};
 Student::Student(string sn, string n, string mn, string gen, int a, string ph, 
 		string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
@@ -41,12 +41,12 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	score = s;
 	}
 
-float Student::get_average_score(){
+void Student::get_average_score(){
 	int sum = 0;
 	for (int i = 0; i < score.size(); i++){
 		sum = sum + score[i];
 		}
-	return float(sum) / score.size();
+	avg = float(sum) / score.size();
 	}
 
 void Student::print_all_inform(){
@@ -71,10 +71,11 @@ void Student::print_all_inform(){
 int main() {
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 4, 4, 5, 5 });
-	float avg = Masha.get_average_score();
 	
 	Masha.print_all_inform();
-	
+	Masha.get_average_score();
+	cout << "The average of score " <<  Masha.avg << endl;
+
 	system("pause");
 	return 0;
 	}
