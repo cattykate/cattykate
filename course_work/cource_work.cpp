@@ -21,6 +21,7 @@ public:
 	string form_of_study;
 	vector<int> score;
 
+	void print_all_inform();
 	float get_average_score();
 	};
 Student::Student(string sn, string n, string mn, string gen, int a, string ph, 
@@ -48,11 +49,32 @@ float Student::get_average_score(){
 	return float(sum) / score.size();
 	}
 
+void Student::print_all_inform(){
+	cout << surname << endl;
+	cout << name << endl;
+	cout << gender << endl;
+	cout << age << endl;
+	cout << phone << endl;
+	cout << email << endl;
+	cout << hometown << endl;
+	cout << specialty << endl;
+	cout << course << endl;
+	cout << group << endl;
+	cout << form_of_study << endl;
+
+	for (int i = 0; i < score.size(); i++){
+		cout << score[i] << " ";
+	}
+	cout << endl;
+}
+
 int main() {
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 4, 4, 5, 5 });
 	float avg = Masha.get_average_score();
-
+	
+	Masha.print_all_inform();
+	
 	system("pause");
 	return 0;
 	}
