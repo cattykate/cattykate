@@ -52,5 +52,9 @@ int main() {
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 4, 4, 5, 5 });
 	float avg = Masha.get_average_score();
+
+	cout << "Parapapa" <<endl;
+
+	system("pause");
 	return 0;
 	}
