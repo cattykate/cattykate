@@ -25,7 +25,7 @@ public:
 
 	void get_average_score();
 	void print_all_inform();
-	void пуе_size_of_scholarship();
+	void get_size_of_scholarship();
 };
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
@@ -43,7 +43,7 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	form_of_study = fos;
 	score = s;
 	get_average_score();
-	пуе_size_of_scholarship();
+	get_size_of_scholarship();
 
 }
 
@@ -55,7 +55,7 @@ void Student::get_average_score(){
 	avg = float(sum) / score.size();
 }
 
-void Student::пуе_size_of_scholarship(){
+void Student::get_size_of_scholarship(){
 	int counter_of_3 = 0;
 	int counter_of_4 = 0;
 	int counter_of_5 = 0;
