@@ -42,9 +42,9 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	group = gr;
 	form_of_study = fos;
 	score = s;
+
 	get_average_score();
 	get_size_of_scholarship();
-
 }
 
 void Student::get_average_score(){
@@ -75,7 +75,6 @@ void Student::get_size_of_scholarship(){
 		scholarship = 2800;
 	else if (counter_of_4 >= 1)
 		scholarship = 2400;
-	
 }
 
 void Student::print_all_inform(){
@@ -100,6 +99,7 @@ void Student::print_all_inform(){
 }
 
 int main() {
+
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5 });
 
@@ -109,6 +109,7 @@ int main() {
 	Masha.print_all_inform();
 	cout << endl;
 	Lena.print_all_inform();
+	cout << endl;
 
 	system("pause");
 	return 0;
