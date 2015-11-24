@@ -43,6 +43,7 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	form_of_study = fos;
 	score = s;
 	get_average_score();
+	size_of_scholarship();
 
 }
 
@@ -55,7 +56,26 @@ void Student::get_average_score(){
 }
 
 void Student::size_of_scholarship(){
-
+	int counter_of_3 = 0;
+	int counter_of_4 = 0;
+	int counter_of_5 = 0;
+	for (int i = 0; i < score.size(); i++){
+		if (score[i] == 3)
+			counter_of_3++;
+		else if (score[i] == 4)
+			counter_of_4++;
+		else if (score[i] == 5)
+			counter_of_5++;
+	}
+	if (counter_of_3 != 0)
+		scholarship = 0;
+	else if (counter_of_5 == score.size())
+		scholarship = 3500;
+	else if (counter_of_5 >= 1)
+		scholarship = 2800;
+	else if (counter_of_4 >= 1)
+		scholarship = 2400;
+	
 }
 
 void Student::print_all_inform(){
@@ -76,11 +96,12 @@ void Student::print_all_inform(){
 	}
 	cout << endl;
 	cout << avg << endl;
+	cout << scholarship << endl;
 }
 
 int main() {
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
-		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 4, 4, 4, 5 });
+		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5 });
 
 	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
