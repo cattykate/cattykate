@@ -21,9 +21,11 @@ public:
 	string form_of_study;
 	vector<int> score;
 	float avg;
+	int scholarship;
 
 	void get_average_score();
 	void print_all_inform();
+	void size_of_scholarship();
 };
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
@@ -41,6 +43,7 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	form_of_study = fos;
 	score = s;
 	get_average_score();
+
 }
 
 void Student::get_average_score(){
@@ -49,6 +52,10 @@ void Student::get_average_score(){
 		sum = sum + score[i];
 	}
 	avg = float(sum) / score.size();
+}
+
+void Student::size_of_scholarship(){
+
 }
 
 void Student::print_all_inform(){
@@ -73,8 +80,14 @@ void Student::print_all_inform(){
 
 int main() {
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
-		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 4, 4, 5, 5 });
+		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 4, 4, 4, 5 });
+
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
 	Masha.print_all_inform();
+	cout << endl;
+	Lena.print_all_inform();
 
 	system("pause");
 	return 0;
