@@ -25,7 +25,9 @@ public:
 
 	void get_average_score();
 	void print_all_inform();
+	void print_all_inform(bool b);
 	void get_size_of_scholarship();
+	
 };
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
@@ -98,6 +100,22 @@ void Student::print_all_inform(){
 	cout << scholarship << endl;
 }
 
+
+void Student::print_all_inform(bool b){
+	if (b == 1){
+		cout << name << endl;
+		cout << surname << endl;
+	}
+	else if (b == 0)
+	{
+		cout << name << endl;
+		cout << surname << endl;
+		cout << phone << endl;	
+		cout << group << endl;
+	}
+
+}
+
 int main() {
 
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
@@ -110,6 +128,10 @@ int main() {
 	cout << endl;
 	Lena.print_all_inform();
 	cout << endl;
+
+	Masha.print_all_inform(0);
+	cout << endl;
+	Lena.print_all_inform(1);
 
 	system("pause");
 	return 0;
