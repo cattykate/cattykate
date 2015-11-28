@@ -32,7 +32,8 @@ public:
 
 class Database {
 public:
-	Database (vector <Student> db);
+	// Database (vector <Student> db); - пока не нужно, все делаем по порядку. 
+										// Если не задавать конструктор - класс заполняется сам, конструктором по умолчанию .
 	vector <Student> data;
 
 	void writeToTheFile();
@@ -58,13 +59,13 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	getSizeOfScholarship();
 }
 
-Database::Database(vector<Student> db) {
-	data = db;
-	writeToTheFile();
-}
+//Database::Database(vector<Student> db) {
+	//data = db; 
+	//writeToTheFile();
+//} - ты инициализируешь класс и.. СРАЗУ ПИШЕШЬ ЕГО В ФАЙЛ?! ЗАЧЕМ?!
 
 void Database::writeToTheFile() {
-	ofstream out("database");
+	ofstream out("database.txt"); // Тип файла не забываем!) 
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -156,6 +157,12 @@ int main() {
 	Lena.printAllInform(1);
 	cout << endl;
 
+	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных: 
+	Database db; // создали базу, она абсолютно пустая. 
+	// обратимся к полю базы, которое хранит вектор из Student: db.data. - это у нас что? вектор! значит в это поле мы можем добавить студента? так? Добавляем!
+	db.data.push_back(Masha);
+	db.data.push_back(Lena);
+	// теперь в базе маша с леной!!! проверь в дебаггере!
 
 	system("pause");
 	return 0;
