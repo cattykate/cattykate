@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class Student {
@@ -23,12 +24,20 @@ public:
 	float avg;
 	int scholarship;
 
-	void get_average_score();
-	void print_all_inform();
-	void print_all_inform(bool b);
-	void get_size_of_scholarship();
-	
+	void getAverageScore();
+	void printAllInform();
+	void printAllInform(bool b);
+	void getSizeOfScholarship();
 };
+
+class Database {
+public:
+	Database (vector <Student> db);
+	vector <Student> data;
+
+	void writeToTheFile();
+};
+
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
 	surname = sn;
@@ -45,11 +54,25 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	form_of_study = fos;
 	score = s;
 
-	get_average_score();
-	get_size_of_scholarship();
+	getAverageScore();
+	getSizeOfScholarship();
 }
 
-void Student::get_average_score(){
+Database::Database(vector<Student> db) {
+	data = db;
+	writeToTheFile();
+}
+
+void Database::writeToTheFile() {
+	ofstream out("database");
+	if (!out) {
+		cout << "can't open the file ;(" << endl;
+	}
+	out << "This is text file! YEEEAAAH :)";
+	out.close();
+}
+
+void Student::getAverageScore(){
 	int sum = 0;
 	for (int i = 0; i < score.size(); i++){
 		sum = sum + score[i];
@@ -57,7 +80,7 @@ void Student::get_average_score(){
 	avg = float(sum) / score.size();
 }
 
-void Student::get_size_of_scholarship(){
+void Student::getSizeOfScholarship(){
 	int counter_of_3 = 0;
 	int counter_of_4 = 0;
 	int counter_of_5 = 0;
@@ -79,7 +102,7 @@ void Student::get_size_of_scholarship(){
 		scholarship = 2400;
 }
 
-void Student::print_all_inform(){
+void Student::printAllInform(){
 	cout << surname << endl;
 	cout << name << endl;
 	cout << gender << endl;
@@ -101,7 +124,7 @@ void Student::print_all_inform(){
 }
 
 
-void Student::print_all_inform(bool b){
+void Student::printAllInform(bool b){
 	if (b == 1){
 		cout << name << endl;
 		cout << surname << endl;
@@ -113,7 +136,6 @@ void Student::print_all_inform(bool b){
 		cout << phone << endl;	
 		cout << group << endl;
 	}
-
 }
 
 int main() {
@@ -124,14 +146,16 @@ int main() {
 	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
 
-	Masha.print_all_inform();
+	Masha.printAllInform();
 	cout << endl;
-	Lena.print_all_inform();
+	Lena.printAllInform();
 	cout << endl;
 
-	Masha.print_all_inform(0);
+	Masha.printAllInform(0);
 	cout << endl;
-	Lena.print_all_inform(1);
+	Lena.printAllInform(1);
+	cout << endl;
+
 
 	system("pause");
 	return 0;
