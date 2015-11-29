@@ -32,14 +32,14 @@ public:
 
 class Database {
 public:
-	// Database (vector <Student> db); - пока не нужно, все делаем по порядку. 
-										// Если не задавать конструктор - класс заполняется сам, конструктором по умолчанию .
-	vector <Student> data;
+	// Database (vector <Student> db); - пока не нужно, все делаем по порядку.
+	// Если не задавать конструктор - класс заполняется сам, конструктором по умолчанию .
+	vector <Student> data; // вектор студентов массив значений со студентами data поле
 
 	void writeToTheFile();
 };
 
-Student::Student(string sn, string n, string mn, string gen, int a, string ph,
+Student::Student( string sn, string n,  string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
 	surname = sn;
 	name = n;
@@ -60,16 +60,22 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 }
 
 //Database::Database(vector<Student> db) {
-	//data = db; 
-	//writeToTheFile();
+//data = db;
+//writeToTheFile();
 //} - ты инициализируешь класс и.. СРАЗУ ПИШЕШЬ ЕГО В ФАЙЛ?! ЗАЧЕМ?!
 
-void Database::writeToTheFile() {
-	ofstream out("database.txt"); // Тип файла не забываем!) 
+void Database::writeToTheFile() { // функция записывающая данные о каждом студенте в файл
+	ofstream out("database.txt"); // Тип файла не забываем!)
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
-	out << "This is text file! YEEEAAAH :)";
+	for (int i = 0; i < data.size(); i++)
+	{
+		out << data[i].name << " " << data[i].surname << " " << data[i].middle_name << " "
+			<< data[i].gender << " " << data[i].age << " " << data[i].phone << " "
+			<< data[i].email << " " << data[i].hometown << " " << data[i].specialty << " "
+			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << " " << endl;
+	}
 	out.close();
 }
 
@@ -106,6 +112,7 @@ void Student::getSizeOfScholarship(){
 void Student::printAllInform(){
 	cout << surname << endl;
 	cout << name << endl;
+	cout << middle_name << endl;
 	cout << gender << endl;
 	cout << age << endl;
 	cout << phone << endl;
@@ -119,6 +126,7 @@ void Student::printAllInform(){
 	for (int i = 0; i < score.size(); i++){
 		cout << score[i] << " ";
 	}
+
 	cout << endl;
 	cout << avg << endl;
 	cout << scholarship << endl;
@@ -134,7 +142,7 @@ void Student::printAllInform(bool b){
 	{
 		cout << name << endl;
 		cout << surname << endl;
-		cout << phone << endl;	
+		cout << phone << endl;
 		cout << group << endl;
 	}
 }
@@ -157,14 +165,17 @@ int main() {
 	Lena.printAllInform(1);
 	cout << endl;
 
-	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных: 
-	Database db; // создали базу, она абсолютно пустая. 
+	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных:
+	Database db; // пустой объект. создали базу, она абсолютно пустая.
 	// обратимся к полю базы, которое хранит вектор из Student: db.data. - это у нас что? вектор! значит в это поле мы можем добавить студента? так? Добавляем!
 	db.data.push_back(Masha);
 	db.data.push_back(Lena);
+
+	db.writeToTheFile();
+
 	// теперь в базе маша с леной!!! проверь в дебаггере!
-	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile() 
-	// но твоя функция не заработает 
+	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
+	// но твоя функция не заработает
 
 	system("pause");
 	return 0;
