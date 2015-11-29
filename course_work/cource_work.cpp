@@ -39,7 +39,7 @@ public:
 	void writeToTheFile();
 };
 
-Student::Student( string sn, string n,  string mn, string gen, int a, string ph,
+Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
 	surname = sn;
 	name = n;
