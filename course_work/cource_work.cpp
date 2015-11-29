@@ -37,6 +37,7 @@ public:
 	vector <Student> data; // вектор студентов массив значений со студентами data поле
 
 	void writeToTheFile();
+	void readFromTheFile();
 };
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
@@ -71,12 +72,35 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 	}
 	for (int i = 0; i < data.size(); i++)
 	{
-		out << data[i].name << " " << data[i].surname << " " << data[i].middle_name << " "
+		out << data[i].surname << " " << data[i].name << " " << data[i].middle_name << " "
 			<< data[i].gender << " " << data[i].age << " " << data[i].phone << " "
 			<< data[i].email << " " << data[i].hometown << " " << data[i].specialty << " "
 			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << " " << endl;
+
 	}
 	out.close();
+}
+
+void Database::readFromTheFile() { // читает из файла и выводит данные о студентах в консоль
+	ifstream in("database.txt");
+	if (!in) {
+		cout << "can't open the file ;(" << endl;
+	}
+	for (int i = 0; i < data.size(); i++){
+		in >> data[i].surname >> data[i].name >> data[i].middle_name >>
+			data[i].gender >> data[i].age >> data[i].phone >>
+			data[i].email >> data[i].hometown >> data[i].specialty >>
+			data[i].course >> data[i].group >> data[i].form_of_study;
+		
+		cout << "====================================== \n Student " << i+1 << "\n"
+			<< data[i].surname << " " << data[i].name << " " << data[i].middle_name << " " 
+			<< data[i].gender << " " << data[i].age << " " << data[i].phone << " " 
+			<< data[i].email << " " << data[i].hometown << " " << data[i].specialty << " "
+			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << "\n\n";
+
+		cout << "phone ==== > " << " " << data[i].phone << "\n\n";
+	}
+	in.close();
 }
 
 void Student::getAverageScore(){
@@ -155,7 +179,8 @@ int main() {
 	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
 
-	Masha.printAllInform();
+	// ненжуный мусорв консольке!)
+	/*Masha.printAllInform(); 
 	cout << endl;
 	Lena.printAllInform();
 	cout << endl;
@@ -163,7 +188,7 @@ int main() {
 	Masha.printAllInform(0);
 	cout << endl;
 	Lena.printAllInform(1);
-	cout << endl;
+	cout << endl;  */ 
 
 	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных:
 	Database db; // пустой объект. создали базу, она абсолютно пустая.
@@ -171,7 +196,9 @@ int main() {
 	db.data.push_back(Masha);
 	db.data.push_back(Lena);
 
-	db.writeToTheFile();
+	db.writeToTheFile(); 
+
+	db.readFromTheFile();
 
 	// теперь в базе маша с леной!!! проверь в дебаггере!
 	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
