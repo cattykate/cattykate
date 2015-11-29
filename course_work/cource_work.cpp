@@ -98,14 +98,6 @@ void Database::readFromTheFile() { // читает из файла и выводит данные о студент
 			data[i].gender >> data[i].age >> data[i].phone >>
 			data[i].email >> data[i].hometown >> data[i].specialty >>
 			data[i].course >> data[i].group >> data[i].form_of_study;
-		
-		cout << "====================================== \n Student " << i+1 << "\n"
-			<< data[i].surname << " " << data[i].name << " " << data[i].middle_name << " " 
-			<< data[i].gender << " " << data[i].age << " " << data[i].phone << " " 
-			<< data[i].email << " " << data[i].hometown << " " << data[i].specialty << " "
-			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << "\n\n";
-
-		cout << "phone ==== > " << " " << data[i].phone << "\n\n";
 	}
 	in.close();
 }
@@ -185,7 +177,7 @@ int main() {
 	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
 
-	// ненжуный мусорв консольке!)
+	// ненжуный мусор в консольке!)
 	/*Masha.printAllInform(); 
 	cout << endl;
 	Lena.printAllInform();
@@ -205,14 +197,10 @@ int main() {
 	db.writeToTheFile(); 
 
 	db.readFromTheFile();
-
+	
 	// теперь в базе маша с леной!!! проверь в дебаггере!
 	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
 	// но твоя функция не заработает
-
-	
-	// Как наполнить Олю плюшечками с клавиатуры?? :)
-	Student Oly();
 	
 	system("pause");
 	return 0;
