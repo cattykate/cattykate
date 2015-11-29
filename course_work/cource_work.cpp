@@ -75,8 +75,15 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 		out << data[i].surname << " " << data[i].name << " " << data[i].middle_name << " "
 			<< data[i].gender << " " << data[i].age << " " << data[i].phone << " "
 			<< data[i].email << " " << data[i].hometown << " " << data[i].specialty << " "
-			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << " " << endl;
+			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << " " 
+			<< endl;
 
+		//так я хотела записать вектор с оценками
+		 /*for (int j = 0; j < data[i].score.size(); g++)
+		{
+			out << data[i].score[j] << " ";
+		}
+		*/
 	}
 	out.close();
 }
@@ -156,7 +163,6 @@ void Student::printAllInform(){
 	cout << scholarship << endl;
 }
 
-
 void Student::printAllInform(bool b){
 	if (b == 1){
 		cout << name << endl;
@@ -204,6 +210,10 @@ int main() {
 	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
 	// но твоя функция не заработает
 
+	
+	// Как наполнить Олю плюшечками с клавиатуры?? :)
+	Student Oly();
+	
 	system("pause");
 	return 0;
 }
