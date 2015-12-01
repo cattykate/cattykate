@@ -75,8 +75,7 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 		out << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
 			<< data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t"
 			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
-			<< data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study << "\t" 
-			<< endl;
+			<< data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study << "\t";
 
 		for (int j = 0; j < data[i].score.size(); j++)
 		{
@@ -177,9 +176,33 @@ int main() {
 
 	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5 });
+	
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
+	Student Kate("Ageeva", "Kate", "Petrovna", "female", 23, "1616555",
+		"lena@mail.ru", "Moscow", "Marketing", 4, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
+/*	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
 
 	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+	
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+
+	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 }); */
 
 	// ненжуный мусор в консольке!)
 	/*Masha.printAllInform(); 
@@ -195,7 +218,10 @@ int main() {
 	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных:
 	Database db; // пустой объект. создали базу, она абсолютно пустая.
 	// обратимся к полю базы, которое хранит вектор из Student: db.data. - это у нас что? вектор! значит в это поле мы можем добавить студента? так? Добавляем!
+	
+	
 	db.data.push_back(Masha);
+	
 	db.data.push_back(Lena);
 
 	db.writeToTheFile(); 
