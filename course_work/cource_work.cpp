@@ -81,7 +81,7 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 		{
 			out << data[i].score[j] << " ";
 		}
-		
+		out << endl;
 	}
 	out.close();
 }
