@@ -77,6 +77,7 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
 			<< data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study << "\t" 
 			<< endl;
+
 		for (int j = 0; j < data[i].score.size(); j++)
 		{
 			out << data[i].score[j] << " ";
@@ -86,7 +87,7 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 	out.close();
 }
 
-void Database::readFromTheFile() { // читает из файла и выводит данные о студентах в консоль
+void Database::readFromTheFile() {
 	ifstream in("database.txt");
 	if (!in) {
 		cout << "can't open the file ;(" << endl;
@@ -96,6 +97,11 @@ void Database::readFromTheFile() { // читает из файла и выводит данные о студент
 			data[i].gender >> data[i].age >> data[i].phone >>
 			data[i].email >> data[i].hometown >> data[i].specialty >>
 			data[i].course >> data[i].group >> data[i].form_of_study;
+
+		for (int j = 0; j < data[i].score.size(); j++)
+		{
+			in >> data[i].score[j];
+		}
 	}
 	in.close();
 }
