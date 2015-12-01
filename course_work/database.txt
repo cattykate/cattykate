@@ -1,2 +1,12 @@
-Belova	Mari	Andreevna	female	18	7547685	masha@mail.ru	Moscow	Marketing	1	MK-01-2013	e-learning	5 5 5 5 
-Petrova	Lena	Olegovna	female	20	8454545	lena@mail.ru	Moscow	Marketing	2	MK-01-2012	full-time	3 4 5 5 4 
+Surname 	Name 	Middle Name 	Gender 	Age 	Phone 	Email 	Hometown 	Specialty  	Course 	Group 	Form of study 	Scores 	Average score 	Scholarship 	
+
+Belova	Maria	Andreevna	female	18	89167547685	masha@mail.ru	Moscow	Marketing	1	MK-01-2013	e-learning	5 5 5 5 4 	4.8	2800	
+Petrova	Elena	Olegovna	female	20	89178454545	lena@mail.ru	Moscow	Marketing	2	MK-01-2012	full-time	3 4 5 5 4 	4.2	0	
+Vlasova	Alexandra	Yuryevna	female	17	89261554242	dtdtdtd@yandex.ru	Saint Petersburg	Innovations	1	IN-01-2012	full-time	3 3 3 3 3 	3	0	
+Andreev	Igor	Vasilievich	male	17	89056554815	lena@mail.ru	Kirov	Innovations	2	IN-01-2012	full-time	5 5 5 5 5 	5	3500	
+Eliseeva	Margarita	Alexeevna	female	22	89031564852	marggggo@yandex.ru	Moscow	Marketing	2	MK-01-2012	full-time	4 4 5 5 4 	4.4	2800	
+Ivanov	Vitali	Olegovich	male	21	89257711525	ivanov@mail.ru	Saint Petersburg	Applied Mathematics	3	AM-01-2012	full-time	3 4 4 5 4 	4	0	
+Kirilov	Alexandr	Alexandrovich	male	18	89851554697	alex232@mail.ru	Moscow	Marketing	2	MK-02-2012	full-time	3 5 5 5 5 	4.6	0	
+Ivashenko	Alexey	Igorevich	male	18	89037331642	llle@mail.ru	Moscow	Applied Mathematics	4	AM-01-2011	extramural	4 5 5 5 5 	4.8	2800	
+Sizov	Vasily	Andreevich	male	20	89051501243	sizov@rambler.ru	Moscow	Information Systems and Technology	2	IT-01-2012	full-time	4 4 4 4 4 	4	2400	
+Ageeva	Ekaterina	Petrovna	female	23	89251616555	katerinka@mail.ru	Tomsk	Information Systems and Technology	4	MK-01-2012	full-time	5 5 5 5 5 	5	3500	

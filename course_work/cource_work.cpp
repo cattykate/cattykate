@@ -70,6 +70,10 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
+	out << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
+		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
+		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
+
 	for (int i = 0; i < data.size(); i++)
 	{
 		out << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
@@ -77,11 +81,10 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
 			<< data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study << "\t";
 
-		for (int j = 0; j < data[i].score.size(); j++)
-		{
+		for (int j = 0; j < data[i].score.size(); j++){
 			out << data[i].score[j] << " ";
 		}
-		out << endl;
+		out << "\t" << data[i].avg << "\t" << data[i].scholarship << "\t" << endl;
 	}
 	out.close();
 }
@@ -97,10 +100,10 @@ void Database::readFromTheFile() {
 			data[i].email >> data[i].hometown >> data[i].specialty >>
 			data[i].course >> data[i].group >> data[i].form_of_study;
 
-		for (int j = 0; j < data[i].score.size(); j++)
-		{
+		for (int j = 0; j < data[i].score.size(); j++){
 			in >> data[i].score[j];
 		}
+		in >> data[i].avg >> data[i].scholarship;
 	}
 	in.close();
 }
@@ -173,64 +176,48 @@ void Student::printAllInform(bool b){
 }
 
 int main() {
-
-	Student Masha("Belova", "Mari", "Andreevna", "female", 18, "7547685",
-		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5 });
-	
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
+	Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
+		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
+	Student Elena("Petrova", "Elena", "Olegovna", "female", 20, "89178454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-	Student Kate("Ageeva", "Kate", "Petrovna", "female", 23, "1616555",
-		"lena@mail.ru", "Moscow", "Marketing", 4, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-/*	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-	
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-
-	Student Lena("Petrova", "Lena", "Olegovna", "female", 20, "8454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 }); */
-
-	// ненжуный мусор в консольке!)
-	/*Masha.printAllInform(); 
-	cout << endl;
-	Lena.printAllInform();
-	cout << endl;
-
-	Masha.printAllInform(0);
-	cout << endl;
-	Lena.printAllInform(1);
-	cout << endl;  */ 
+	Student Alexandra("Vlasova", "Alexandra", "Yuryevna", "female", 17, "89261554242",
+		"dtdtdtd@yandex.ru", "Saint Petersburg", "Innovations", 1, "IN-01-2012", "full-time", { 3, 3, 3, 3, 3 });
+	Student Igor("Andreev", "Igor", "Vasilievich", "male", 17, "89056554815",
+		"lena@mail.ru", "Kirov", "Innovations", 2, "IN-01-2012", "full-time", { 5, 5, 5, 5, 5 });
+	Student Margarita("Eliseeva", "Margarita", "Alexeevna", "female", 22, "89031564852",
+		"marggggo@yandex.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 4, 4, 5, 5, 4 });
+	Student Vitali("Ivanov", "Vitali", "Olegovich", "male", 21, "89257711525",
+		"ivanov@mail.ru", "Saint Petersburg", "Applied Mathematics", 3, "AM-01-2012", "full-time", { 3, 4, 4, 5, 4 });
+	Student Alexandr("Kirilov", "Alexandr", "Alexandrovich", "male", 18, "89851554697",
+		"alex232@mail.ru", "Moscow", "Marketing", 2, "MK-02-2012", "full-time", { 3, 5, 5, 5, 5 });
+	Student Alexey("Ivashenko", "Alexey", "Igorevich", "male", 18, "89037331642",
+		"llle@mail.ru", "Moscow", "Applied Mathematics", 4, "AM-01-2011", "extramural", { 4, 5, 5, 5, 5 });
+	Student Vasily("Sizov", "Vasily", "Andreevich", "male", 20, "89051501243",
+		"sizov@rambler.ru", "Moscow", "Information Systems and Technology", 2, "IT-01-2012", "full-time", { 4, 4, 4, 4, 4 }); 
+	Student Ekaterina("Ageeva", "Ekaterina", "Petrovna", "female", 23, "89251616555",
+		"katerinka@mail.ru", "Tomsk", "Information Systems and Technology", 4, "MK-01-2012", "full-time", { 5, 5, 5, 5, 5 });
 
 	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных:
 	Database db; // пустой объект. создали базу, она абсолютно пустая.
 	// обратимся к полю базы, которое хранит вектор из Student: db.data. - это у нас что? вектор! значит в это поле мы можем добавить студента? так? Добавляем!
 	
+	db.data.push_back(Maria);
+	db.data.push_back(Elena);
+	db.data.push_back(Alexandra);
+	db.data.push_back(Igor);
+	db.data.push_back(Margarita);
+	db.data.push_back(Vitali);
+	db.data.push_back(Alexandr);
+	db.data.push_back(Alexey);
+	db.data.push_back(Vasily);
+	db.data.push_back(Ekaterina);
 	
-	db.data.push_back(Masha);
-	
-	db.data.push_back(Lena);
-
 	db.writeToTheFile(); 
-
 	db.readFromTheFile();
 	
 	// теперь в базе маша с леной!!! проверь в дебаггере!
 	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
-	// но твоя функция не заработает
+	// но твоя функция не заработает	
 	
 	system("pause");
 	return 0;
