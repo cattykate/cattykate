@@ -72,18 +72,16 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 	}
 	for (int i = 0; i < data.size(); i++)
 	{
-		out << data[i].surname << " " << data[i].name << " " << data[i].middle_name << " "
-			<< data[i].gender << " " << data[i].age << " " << data[i].phone << " "
-			<< data[i].email << " " << data[i].hometown << " " << data[i].specialty << " "
-			<< data[i].course << " " << data[i].group << " " << data[i].form_of_study << " " 
+		out << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
+			<< data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t"
+			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
+			<< data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study << "\t" 
 			<< endl;
-
-		//так я хотела записать вектор с оценками
-		 /*for (int j = 0; j < data[i].score.size(); g++)
+		for (int j = 0; j < data[i].score.size(); j++)
 		{
 			out << data[i].score[j] << " ";
 		}
-		*/
+		
 	}
 	out.close();
 }
