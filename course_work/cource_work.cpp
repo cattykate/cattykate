@@ -26,7 +26,6 @@ public:
 
 	void getAverageScore();
 	void printAllInform();
-	void printAllInform(bool b);
 	void getSizeOfScholarship();
 };
 
@@ -38,6 +37,7 @@ public:
 
 	void writeToTheFile();
 	void readFromTheFile();
+	void addUser(Student st);
 };
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
@@ -108,6 +108,10 @@ void Database::readFromTheFile() {
 	in.close();
 }
 
+void Database::addUser(Student st){
+		data.push_back(st);
+	}
+
 void Student::getAverageScore(){
 	int sum = 0;
 	for (int i = 0; i < score.size(); i++){
@@ -161,22 +165,8 @@ void Student::printAllInform(){
 	cout << scholarship << endl;
 }
 
-void Student::printAllInform(bool b){
-	if (b == 1){
-		cout << name << endl;
-		cout << surname << endl;
-	}
-	else if (b == 0)
-	{
-		cout << name << endl;
-		cout << surname << endl;
-		cout << phone << endl;
-		cout << group << endl;
-	}
-}
-
 int main() {
-	Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
+	/*Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
 	Student Elena("Petrova", "Elena", "Olegovna", "female", 20, "89178454545",
 		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
@@ -195,13 +185,13 @@ int main() {
 	Student Vasily("Sizov", "Vasily", "Andreevich", "male", 20, "89051501243",
 		"sizov@rambler.ru", "Moscow", "Information Systems and Technology", 2, "IT-01-2012", "full-time", { 4, 4, 4, 4, 4 }); 
 	Student Ekaterina("Ageeva", "Ekaterina", "Petrovna", "female", 23, "89251616555",
-		"katerinka@mail.ru", "Tomsk", "Information Systems and Technology", 4, "MK-01-2012", "full-time", { 5, 5, 5, 5, 5 });
+		"katerinka@mail.ru", "Tomsk", "Information Systems and Technology", 4, "MK-01-2012", "full-time", { 5, 5, 5, 5, 5 }); */
 
 	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных:
 	Database db; // пустой объект. создали базу, она абсолютно пустая.
 	// обратимся к полю базы, которое хранит вектор из Student: db.data. - это у нас что? вектор! значит в это поле мы можем добавить студента? так? Добавляем!
 	
-	db.data.push_back(Maria);
+	/*db.data.push_back(Maria);
 	db.data.push_back(Elena);
 	db.data.push_back(Alexandra);
 	db.data.push_back(Igor);
@@ -210,11 +200,14 @@ int main() {
 	db.data.push_back(Alexandr);
 	db.data.push_back(Alexey);
 	db.data.push_back(Vasily);
-	db.data.push_back(Ekaterina);
+	db.data.push_back(Ekaterina); */
 	
 	db.writeToTheFile(); 
-	db.readFromTheFile();
 	
+	Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
+		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
+	db.addUser(Maria);
+
 	// теперь в базе маша с леной!!! проверь в дебаггере!
 	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
 	// но твоя функция не заработает	
