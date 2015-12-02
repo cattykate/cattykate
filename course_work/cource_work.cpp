@@ -38,6 +38,8 @@ public:
 	void writeToTheFile();
 	void readFromTheFile();
 	void addUser(Student st);
+	void deleteUser(int numberOfStudent);
+	void findUser(string surname);
 };
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
@@ -111,6 +113,24 @@ void Database::readFromTheFile() {
 void Database::addUser(Student st){
 		data.push_back(st);
 	}
+
+void Database::deleteUser(int numberOfStudent) {
+	data.erase(data.begin() + (numberOfStudent - 1)); /* (numberOfStudent - 1) because we have vector with elements from 0...
+	 to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" */
+}
+
+void Database::findUser(string surname) {
+	bool result = 0;
+	for (int i = 0; i < data.size(); i++){
+		if (surname == data[i].surname) {
+			data[i].printAllInform();
+			result = 1;
+		}
+	} 
+	if (result == false) {
+		cout << "Student " << surname << " not found! \n" << "Maybe this student was expelled from the university ? ;)" << endl;
+	}
+}
 
 void Student::getAverageScore(){
 	int sum = 0;
@@ -187,31 +207,68 @@ int main() {
 	Student Ekaterina("Ageeva", "Ekaterina", "Petrovna", "female", 23, "89251616555",
 		"katerinka@mail.ru", "Tomsk", "Information Systems and Technology", 4, "MK-01-2012", "full-time", { 5, 5, 5, 5, 5 }); */
 
-	// У нас есть маша и лена, они обе типа Student, верно? Есть два человека, поэтому можно созщдавать базу данных:
 	Database db; // пустой объект. создали базу, она абсолютно пустая.
-	// обратимся к полю базы, которое хранит вектор из Student: db.data. - это у нас что? вектор! значит в это поле мы можем добавить студента? так? Добавляем!
-	
-	/*db.data.push_back(Maria);
-	db.data.push_back(Elena);
-	db.data.push_back(Alexandra);
-	db.data.push_back(Igor);
-	db.data.push_back(Margarita);
-	db.data.push_back(Vitali);
-	db.data.push_back(Alexandr);
-	db.data.push_back(Alexey);
-	db.data.push_back(Vasily);
-	db.data.push_back(Ekaterina); */
-	
-	db.writeToTheFile(); 
 	
 	Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
-	db.addUser(Maria);
+	Student Elena("Petrova", "Elena", "Olegovna", "female", 20, "89178454545",
+		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
+	Student Alexandra("Vlasova", "Alexandra", "Yuryevna", "female", 17, "89261554242",
+		"dtdtdtd@yandex.ru", "Saint Petersburg", "Innovations", 1, "IN-01-2012", "full-time", { 3, 3, 3, 3, 3 });
 
-	// теперь в базе маша с леной!!! проверь в дебаггере!
-	// далее, когда у тебя есть база, ты можешь ее записать в файл. Для этого надо вызывать вфункцию db.writeToTheFile()
-	// но твоя функция не заработает	
+	int iteam = 0;
+
+	cout << endl << "==========================================\n\n";
+	cout << "Welcome to the database **Students** \n\n";
+	cout << endl << "==========================================" << endl; 
+	cout << "You can ... \n\n";
+	cout << "1. Read the database \n" << "2. Write the database to the file \n" << "3. Add the student to the database \n"
+		<< "4. Find the student \n" << "5. Delete the student \n" << "6. Leave the app \n\n";
+	cout << "Your choice is ";
+	cin >> iteam;
+
+	/* so, in my mind all functions work well, I checked it!
+	but now i want to go to the bed( but i think that i need to add a function that will display our menu. 
+	and i cause it to the end of each "case". then it will be work more correctly. what do you say on it? :)
+	*/
 	
+	//this is a test mode!!!i know that it's necessary to edit
+	switch (iteam){
+	case 1:
+		db.readFromTheFile();
+		cout << "The database is read!" << endl;
+		// function displayTheMenu() is here!!!!
+		break;
+	case 2:
+		db.writeToTheFile();;
+		cout << "ok!" << endl;
+		// function displayTheMenu() is here!!!!
+		break;
+	case 3:
+		db.addUser(Maria);
+		db.addUser(Elena);
+		db.addUser(Alexandra);
+		cout << "ok!students are in the database" << endl;
+		// function displayTheMenu() is here!!!!
+		break;
+	case 4:
+		db.findUser("Petrova");
+		db.findUser("Ivanova");
+		break;
+		// function displayTheMenu() is here!!!!
+	case 5:
+		db.deleteUser(1);
+		cout << "student is deleted" << endl;
+		break;
+		// function displayTheMenu() is here!!!!
+	case 6:
+		cout << "Good bye!" << endl;
+		break;
+	default:
+		cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
+		// function displayTheMenu() is here!!!!
+	}
+
 	system("pause");
 	return 0;
 }
