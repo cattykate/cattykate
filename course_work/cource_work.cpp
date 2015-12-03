@@ -23,6 +23,7 @@ public:
 	vector<int> score;
 	float avg;
 	int scholarship;
+	int userID;
 
 	void getAverageScore();
 	void printAllInform();
@@ -34,7 +35,7 @@ public:
 	// Database (vector <Student> db); - пока не нужно, все делаем по порядку.
 	// Если не задавать конструктор - класс заполняется сам, конструктором по умолчанию .
 	vector <Student> data; // вектор студентов массив значений со студентами data поле
-
+		
 	void writeToTheFile();
 	void readFromTheFile();
 	void addUser(Student st);
@@ -72,13 +73,15 @@ void Database::writeToTheFile() { // функция записывающая данные о каждом студен
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
-	out << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
+	out << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
 		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
 		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
 
 	for (int i = 0; i < data.size(); i++)
 	{
-		out << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
+		data[i].userID = i+1;
+
+		out << data[i].userID << "\t" << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
 			<< data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t"
 			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
 			<< data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study << "\t";
@@ -97,8 +100,8 @@ void Database::readFromTheFile() {
 		cout << "can't open the file ;(" << endl;
 	}
 	for (int i = 0; i < data.size(); i++){
-		in >> data[i].surname >> data[i].name >> data[i].middle_name >>
-			data[i].gender >> data[i].age >> data[i].phone >>
+		in >> data[i].userID >> data[i].surname >> data[i].name >> data[i].middle_name >>
+			data[i].gender >> data[i].age >> data[i].phone >> 
 			data[i].email >> data[i].hometown >> data[i].specialty >>
 			data[i].course >> data[i].group >> data[i].form_of_study;
 
@@ -114,10 +117,10 @@ void Database::addUser(Student st){
 		data.push_back(st);
 	}
 
-void Database::deleteUser(int numberOfStudent) {
-	data.erase(data.begin() + (numberOfStudent - 1)); /* (numberOfStudent - 1) because we have vector with elements from 0...
-	 to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" */
-}
+void Database::deleteUser(int userID) {
+		data.erase(data.begin() + (userID-1)); /* (numberOfStudent - 1) because we have vector with elements from 0...
+		 to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" */
+	}
 
 void Database::findUser(string surname) {
 	bool result = 0;
@@ -179,10 +182,16 @@ void Student::printAllInform(){
 	for (int i = 0; i < score.size(); i++){
 		cout << score[i] << " ";
 	}
-
 	cout << endl;
 	cout << avg << endl;
 	cout << scholarship << endl;
+}
+
+void showTheMenu(){
+	cout << "You can ... \n\n";
+	cout << "1. Read the database \n" << "2. Write the database to the file \n" << "3. Add the student to the database \n"
+		<< "4. Find the student \n" << "5. Delete the student \n" << "6. Leave the app \n\n";
+	cout << "Your choice is ";
 }
 
 int main() {
@@ -216,59 +225,53 @@ int main() {
 	Student Alexandra("Vlasova", "Alexandra", "Yuryevna", "female", 17, "89261554242",
 		"dtdtdtd@yandex.ru", "Saint Petersburg", "Innovations", 1, "IN-01-2012", "full-time", { 3, 3, 3, 3, 3 });
 
-	int iteam = 0;
-
-	cout << endl << "==========================================\n\n";
-	cout << "Welcome to the database **Students** \n\n";
-	cout << endl << "==========================================" << endl; 
-	cout << "You can ... \n\n";
-	cout << "1. Read the database \n" << "2. Write the database to the file \n" << "3. Add the student to the database \n"
-		<< "4. Find the student \n" << "5. Delete the student \n" << "6. Leave the app \n\n";
-	cout << "Your choice is ";
-	cin >> iteam;
-
 	/* so, in my mind all functions work well, I checked it!
 	but now i want to go to the bed( but i think that i need to add a function that will display our menu. 
 	and i cause it to the end of each "case". then it will be work more correctly. what do you say on it? :)
 	*/
 	
 	//this is a test mode!!!i know that it's necessary to edit
-	switch (iteam){
-	case 1:
-		db.readFromTheFile();
-		cout << "The database is read!" << endl;
-		// function displayTheMenu() is here!!!!
-		break;
-	case 2:
-		db.writeToTheFile();;
-		cout << "ok!" << endl;
-		// function displayTheMenu() is here!!!!
-		break;
-	case 3:
-		db.addUser(Maria);
-		db.addUser(Elena);
-		db.addUser(Alexandra);
-		cout << "ok!students are in the database" << endl;
-		// function displayTheMenu() is here!!!!
-		break;
-	case 4:
-		db.findUser("Petrova");
-		db.findUser("Ivanova");
-		break;
-		// function displayTheMenu() is here!!!!
-	case 5:
-		db.deleteUser(1);
-		cout << "student is deleted" << endl;
-		break;
-		// function displayTheMenu() is here!!!!
-	case 6:
-		cout << "Good bye!" << endl;
-		break;
-	default:
-		cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
-		// function displayTheMenu() is here!!!!
-	}
-
+	
+	cout << endl << "==========================================\n\n";
+	cout << "Welcome to the database **Students** \n\n";
+	cout << endl << "==========================================" << endl;
+	
+	int iteam = 0;
+	
+	do {
+		showTheMenu();
+		cin >> iteam;
+		switch (iteam){
+		case 1:
+			db.readFromTheFile();
+			cout << "The database is read!" << endl;
+			break;
+		case 2:
+			db.writeToTheFile();;
+			cout << "ok!" << endl;
+			break;
+		case 3:
+			db.addUser(Maria);
+			db.addUser(Elena);
+			db.addUser(Alexandra);
+			cout << "ok!students are in the database" << endl;
+			break;
+		case 4:
+			db.findUser("Petrova");
+			db.findUser("Ivanova");
+			break;
+		case 5:
+			db.deleteUser(1);
+			cout << "student is deleted" << endl;
+			break;
+		case 6:
+			cout << "Good bye!" << endl;
+			break;
+		default:
+			cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
+		} 
+	} while (iteam != 6);
+	
 	system("pause");
 	return 0;
 }
