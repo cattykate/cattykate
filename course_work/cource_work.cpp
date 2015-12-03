@@ -300,7 +300,6 @@ int main() {
 			db.findUser("Ivanova");
 			break;
 		
-		
 		case 5:
 			cin >> iteam;
 			do {
