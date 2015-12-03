@@ -274,6 +274,7 @@ int main() {
 	cout << endl << "==========================================" << endl;
 	
 	int iteam = 0;
+	int id = 0;
 	string surname;
 
 	do {
@@ -288,6 +289,7 @@ int main() {
 			db.writeToTheFile();;
 			cout << "ok!" << endl;
 			break;
+
 		case 3:
 			db.addUser(Maria);
 			db.addUser(Elena);
@@ -295,9 +297,9 @@ int main() {
 			cout << "ok!students are in the database" << endl;
 			break;
 		case 4:
-
-			db.findUser("Petrova");
-			db.findUser("Ivanova");
+			cout << "Please, enter the surname\b";
+			cin >> surname;
+			db.findUser(surname);
 			break;
 		
 		case 5:
@@ -306,7 +308,6 @@ int main() {
 				switch (iteam)
 				{
 				case 1:
-					int id = 0;
 					cout << "Enter the Student ID\n";
 					cin >> id;
 					db.deleteUser(id);
