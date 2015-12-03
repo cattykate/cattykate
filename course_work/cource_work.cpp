@@ -40,6 +40,7 @@ public:
 	void readFromTheFile();
 	void addUser(Student st);
 	void deleteUser(int numberOfStudent);
+	void deleteUser(string surname);
 	void findUser(string surname);
 };
 
@@ -122,6 +123,22 @@ void Database::deleteUser(int userID) {
 		 to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" */
 	}
 
+void Database::deleteUser(string surname){
+	bool result = 0;
+	for (int i = 0; i < data.size(); i++){
+		if (surname == data[i].surname) {
+			data.erase(data.begin() + (data[i].userID-1));
+			result = 1;
+		}
+	}
+	if (result == false) {
+		cout << "Student " << surname << " not found! \n" << endl;
+		}
+	else 
+		cout << "Student " << surname << " is deleted! \n" << endl;
+	}
+
+
 void Database::findUser(string surname) {
 	bool result = 0;
 	for (int i = 0; i < data.size(); i++){
@@ -194,7 +211,14 @@ void showTheMenu(){
 	cout << "Your choice is ";
 }
 
+void showTheMenuDelete(){ 
+	cout << "Push... \n 1. if you would like to enter the Student ID\n" << "2. if you would like to enter the student surname\n"
+	<< "3. exit to the main menu\n\n";
+	cout << "Your choise is";
+}
+
 int main() {
+
 	/*Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
 		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
 	Student Elena("Petrova", "Elena", "Olegovna", "female", 20, "89178454545",
@@ -225,6 +249,19 @@ int main() {
 	Student Alexandra("Vlasova", "Alexandra", "Yuryevna", "female", 17, "89261554242",
 		"dtdtdtd@yandex.ru", "Saint Petersburg", "Innovations", 1, "IN-01-2012", "full-time", { 3, 3, 3, 3, 3 });
 
+	db.readFromTheFile();
+
+	db.addUser(Maria); 
+	db.addUser(Elena);
+	db.addUser(Alexandra); 
+
+	db.writeToTheFile(); // Masha, Lena, Sasha are in the file
+
+	//db.deleteUser("Petrova"); 
+	db.writeToTheFile(); // Petrova is deleted from the file
+	//db.deleteUser(2); // student 2 is deleted (Lena deleted)
+	db.writeToTheFile(); // only Alexandra in the file
+	
 	/* so, in my mind all functions work well, I checked it!
 	but now i want to go to the bed( but i think that i need to add a function that will display our menu. 
 	and i cause it to the end of each "case". then it will be work more correctly. what do you say on it? :)
@@ -237,7 +274,8 @@ int main() {
 	cout << endl << "==========================================" << endl;
 	
 	int iteam = 0;
-	
+	string surname;
+
 	do {
 		showTheMenu();
 		cin >> iteam;
@@ -257,13 +295,36 @@ int main() {
 			cout << "ok!students are in the database" << endl;
 			break;
 		case 4:
+
 			db.findUser("Petrova");
 			db.findUser("Ivanova");
 			break;
+		
+		
 		case 5:
-			db.deleteUser(1);
-			cout << "student is deleted" << endl;
+			cin >> iteam;
+			do {
+				switch (iteam)
+				{
+				case 1:
+					int id = 0;
+					cout << "Enter the Student ID\n";
+					cin >> id;
+					db.deleteUser(id);
+				case 2:
+					cout << "Enter the Student ID\n";
+					cin >> surname;
+					db.deleteUser(surname);
+				case 3:
+					showTheMenu();
+				default:
+					cout << "Please! Enter 1, 2, 3!" << endl;
+					break;
+				}
+			} while (iteam != 3);
+			
 			break;
+		
 		case 6:
 			cout << "Good bye!" << endl;
 			break;
