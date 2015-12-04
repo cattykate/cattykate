@@ -38,6 +38,7 @@ public:
 		
 	void writeToTheFile();
 	void readFromTheFile();
+	void printTheDatabaseToTheConsole();
 	void addUser(Student st);
 	void deleteUser(int numberOfStudent);
 	void deleteUser(string surname);
@@ -112,6 +113,24 @@ void Database::readFromTheFile() {
 		in >> data[i].avg >> data[i].scholarship;
 	}
 	in.close();
+}
+
+void Database::printTheDatabaseToTheConsole() {
+	cout << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
+		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
+		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
+	readFromTheFile();
+	for (int i = 0; i < data.size(); i++){
+		cout << data[i].userID << "\t" << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t" <<
+			data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t" <<
+			data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t" <<
+			data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study;
+
+		for (int j = 0; j < data[i].score.size(); j++){
+			cout << data[i].score[j];
+		}
+		cout << "\t"<< data[i].avg << "\t" << data[i].scholarship << "\n\n";
+	}
 }
 
 void Database::addUser(Student st){
@@ -206,15 +225,15 @@ void Student::printAllInform(){
 
 void showTheMenu(){
 	cout << "You can ... \n\n";
-	cout << "1. Read the database \n" << "2. Write the database to the file \n" << "3. Add the student to the database \n"
-		<< "4. Find the student \n" << "5. Delete the student \n" << "6. Leave the app \n\n";
-	cout << "Your choice is ";
+	cout << "1. Read the database \n" << "2. Write the database to the file \n" << "3. Add the student to the database \n" << "4. Print the database to the screen \n"
+		<< "5. Find the student \n" << "6. Delete the student \n" << "7. Leave the app \n\n";
+	cout << "Your choice is \t";
 }
 
 void showTheMenuDelete(){ 
 	cout << "Push... \n 1. if you would like to enter the Student ID\n" << "2. if you would like to enter the student surname\n"
-	<< "3. exit to the main menu\n\n";
-	cout << "Your choise is";
+	<< "3. Exit to the main menu\n\n";
+	cout << "Your choise is \t";
 }
 
 int main() {
@@ -258,10 +277,10 @@ int main() {
 	db.writeToTheFile(); // Masha, Lena, Sasha are in the file
 
 	//db.deleteUser("Petrova"); 
-	db.writeToTheFile(); // Petrova is deleted from the file
+	//db.writeToTheFile(); // Petrova is deleted from the file
 	//db.deleteUser(2); // student 2 is deleted (Lena deleted)
-	db.writeToTheFile(); // only Alexandra in the file
-	
+	//db.writeToTheFile(); // only Alexandra in the file
+
 	/* so, in my mind all functions work well, I checked it!
 	but now i want to go to the bed( but i think that i need to add a function that will display our menu. 
 	and i cause it to the end of each "case". then it will be work more correctly. what do you say on it? :)
@@ -289,7 +308,6 @@ int main() {
 			db.writeToTheFile();;
 			cout << "ok!" << endl;
 			break;
-
 		case 3:
 			db.addUser(Maria);
 			db.addUser(Elena);
@@ -297,12 +315,15 @@ int main() {
 			cout << "ok!students are in the database" << endl;
 			break;
 		case 4:
+			db.printTheDatabaseToTheConsole();
+			break;
+		case 5:
 			cout << "Please, enter the surname\b";
 			cin >> surname;
 			db.findUser(surname);
 			break;
 		
-		case 5:
+		case 6:
 			cin >> iteam;
 			do {
 				switch (iteam)
@@ -325,13 +346,13 @@ int main() {
 			
 			break;
 		
-		case 6:
+		case 7:
 			cout << "Good bye!" << endl;
 			break;
 		default:
 			cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
 		} 
-	} while (iteam != 6);
+	} while (iteam != 7);
 	
 	system("pause");
 	return 0;
