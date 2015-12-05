@@ -127,9 +127,9 @@ void Database::readFromTheFile() {
 }
 
 void Database::printDB() {
-	cout << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
-		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
-		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
+	cout << "Student ID " << "Surname " << "Name " << "Middle Name " << "Gender " << "Age "
+		<< "Phone " << "Email " << "Hometown " << "Specialty " << "Course "
+		<< "Group " << "Form of study " << "Scores " << "Average score " << "Scholarship \n\n";
 	
 	for (int i = 0; i < data.size(); i++) data[i].printAllInform();
 }
