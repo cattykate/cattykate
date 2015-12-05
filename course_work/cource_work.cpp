@@ -7,7 +7,8 @@ using namespace std;
 class Student {
 public:
 	Student(string sn, string n, string mn, string gen, int a, string ph,
-		string em, string ht, string spec, int c, string gr, string fos, vector<int> s);
+			string em, string ht, string spec, int c, string gr, string fos, vector<int> s);
+	int userID;
 	string name;
 	string surname;
 	string middle_name;
@@ -23,7 +24,6 @@ public:
 	vector<int> score;
 	float avg;
 	int scholarship;
-	int userID;
 
 	void getAverageScore();
 	void printAllInform();
@@ -32,15 +32,13 @@ public:
 
 class Database {
 public:
-	// Database (vector <Student> db); - пока не нужно, все делаем по порядку.
-	// Если не задавать конструктор - класс заполняется сам, конструктором по умолчанию .
-	vector <Student> data; // вектор студентов массив значений со студентами data поле
+	vector <Student> data; 
 		
 	void writeToTheFile();
 	void readFromTheFile();
-	void printTheDatabaseToTheConsole();
+	void printDB();
 	void addUser(Student st);
-	void deleteUser(int numberOfStudent);
+	void deleteUser(int studentID);
 	void deleteUser(string surname);
 	void findUser(string surname);
 };
@@ -65,13 +63,8 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	getSizeOfScholarship();
 }
 
-//Database::Database(vector<Student> db) {
-//data = db;
-//writeToTheFile();
-//} - ты инициализируешь класс и.. СРАЗУ ПИШЕШЬ ЕГО В ФАЙЛ?! ЗАЧЕМ?!
-
-void Database::writeToTheFile() { // функция записывающая данные о каждом студенте в файл
-	ofstream out("database.txt"); // Тип файла не забываем!)
+void Database::writeToTheFile() { 
+	ofstream out("database.txt"); 
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -115,32 +108,22 @@ void Database::readFromTheFile() {
 	in.close();
 }
 
-void Database::printTheDatabaseToTheConsole() {
+void Database::printDB() {
 	cout << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
 		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
 		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
-	readFromTheFile();
-	for (int i = 0; i < data.size(); i++){
-		cout << data[i].userID << "\t" << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t" <<
-			data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t" <<
-			data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t" <<
-			data[i].course << "\t" << data[i].group << "\t" << data[i].form_of_study;
-
-		for (int j = 0; j < data[i].score.size(); j++){
-			cout << data[i].score[j];
-		}
-		cout << "\t"<< data[i].avg << "\t" << data[i].scholarship << "\n\n";
-	}
+	
+	for (int i = 0; i < data.size(); i++) data[i].printAllInform();
 }
 
 void Database::addUser(Student st){
-		data.push_back(st);
-	}
+	data.push_back(st);
+}
 
 void Database::deleteUser(int userID) {
-		data.erase(data.begin() + (userID-1)); /* (numberOfStudent - 1) because we have vector with elements from 0...
+    data.erase(data.begin() + (userID-1)); /* (numberOfStudent - 1) because we have vector with elements from 0...
 		 to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" */
-	}
+}
 
 void Database::deleteUser(string surname){
 	bool result = 0;
@@ -150,12 +133,13 @@ void Database::deleteUser(string surname){
 			result = 1;
 		}
 	}
+
 	if (result == false) {
 		cout << "Student " << surname << " not found! \n" << endl;
-		}
+	}
 	else 
 		cout << "Student " << surname << " is deleted! \n" << endl;
-	}
+}
 
 
 void Database::findUser(string surname) {
@@ -202,6 +186,7 @@ void Student::getSizeOfScholarship(){
 }
 
 void Student::printAllInform(){
+	cout << userID << endl;
 	cout << surname << endl;
 	cout << name << endl;
 	cout << middle_name << endl;
@@ -225,14 +210,20 @@ void Student::printAllInform(){
 
 void showTheMenu(){
 	cout << "You can ... \n\n";
-	cout << "1. Read the database \n" << "2. Write the database to the file \n" << "3. Add the student to the database \n" << "4. Print the database to the screen \n"
-		<< "5. Find the student \n" << "6. Delete the student \n" << "7. Leave the app \n\n";
+	cout << "1. Read the database \n" 
+		 << "2. Write the database to the file \n" 
+		 << "3. Add the student to the database \n" 
+		 << "4. Print the database to the screen \n"
+		 << "5. Find the student \n" 
+		 << "6. Delete the student \n" 
+		 << "7. Leave the app \n\n";
 	cout << "Your choice is \t";
 }
 
 void showTheMenuDelete(){ 
-	cout << "Push... \n 1. if you would like to enter the Student ID\n" << "2. if you would like to enter the student surname\n"
-	<< "3. Exit to the main menu\n\n";
+	cout << "Push... \n 1. if you would like to enter the Student ID\n" 
+		 << "2. if you would like to enter the student surname\n"
+		 << "3. Exit to the main menu\n\n";
 	cout << "Your choise is \t";
 }
 
@@ -259,22 +250,14 @@ int main() {
 	Student Ekaterina("Ageeva", "Ekaterina", "Petrovna", "female", 23, "89251616555",
 		"katerinka@mail.ru", "Tomsk", "Information Systems and Technology", 4, "MK-01-2012", "full-time", { 5, 5, 5, 5, 5 }); */
 
-	Database db; // пустой объект. создали базу, она абсолютно пустая.
-	
-	Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
-		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
-	Student Elena("Petrova", "Elena", "Olegovna", "female", 20, "89178454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-	Student Alexandra("Vlasova", "Alexandra", "Yuryevna", "female", 17, "89261554242",
-		"dtdtdtd@yandex.ru", "Saint Petersburg", "Innovations", 1, "IN-01-2012", "full-time", { 3, 3, 3, 3, 3 });
-
+	Database db;
 	db.readFromTheFile();
 
-	db.addUser(Maria); 
+	/*db.addUser(Maria); 
 	db.addUser(Elena);
 	db.addUser(Alexandra); 
-
-	db.writeToTheFile(); // Masha, Lena, Sasha are in the file
+	*/
+	//db.writeToTheFile(); // Masha, Lena, Sasha are in the file
 
 	//db.deleteUser("Petrova"); 
 	//db.writeToTheFile(); // Petrova is deleted from the file
@@ -309,13 +292,13 @@ int main() {
 			cout << "ok!" << endl;
 			break;
 		case 3:
-			db.addUser(Maria);
-			db.addUser(Elena);
-			db.addUser(Alexandra);
+			//db.addUser(Maria);
+			//db.addUser(Elena);
+			//db.addUser(Alexandra);
 			cout << "ok!students are in the database" << endl;
 			break;
 		case 4:
-			db.printTheDatabaseToTheConsole();
+			db.printDB();
 			break;
 		case 5:
 			cout << "Please, enter the surname\b";
@@ -333,7 +316,7 @@ int main() {
 					cin >> id;
 					db.deleteUser(id);
 				case 2:
-					cout << "Enter the Student ID\n";
+					cout << "Enter the Student surname\n";
 					cin >> surname;
 					db.deleteUser(surname);
 				case 3:
@@ -354,6 +337,6 @@ int main() {
 		} 
 	} while (iteam != 7);
 	
-	system("pause");
+	//system("pause");
 	return 0;
 }
