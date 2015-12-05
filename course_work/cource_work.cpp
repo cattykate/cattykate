@@ -69,18 +69,13 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 }
 
 void Database::writeToTheFile() { 
-	ofstream out("database.txt"); 
+	ofstream out("C:/Users/Vit/Desktop/cattykate/course_work/database.txt"); 
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
-	out << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
-		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
-		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
 
 	for (int i = 0; i < data.size(); i++)
 	{
-		data[i].userID = i+1;
-
 		out << data[i].userID << "\t" << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
 			<< data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t"
 			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
@@ -207,25 +202,26 @@ void Student::getSizeOfScholarship(){
 }
 
 void Student::printAllInform(){
-	cout << userID << endl;
-	cout << surname << endl;
-	cout << name << endl;
-	cout << middle_name << endl;
-	cout << gender << endl;
-	cout << age << endl;
-	cout << phone << endl;
-	cout << email << endl;
-	cout << hometown << endl;
-	cout << specialty << endl;
-	cout << course << endl;
-	cout << group << endl;
-	cout << form_of_study << endl;
+	cout << userID << " ";
+	cout << surname << " ";
+	cout << name << " ";
+	cout << middle_name << " ";
+	cout << gender << " ";
+	cout << age << " ";
+	cout << phone << " ";
+	cout << email << " ";
+	cout << hometown << " ";
+	cout << specialty << " ";
+	cout << course << " ";
+	cout << group << " ";
+	cout << form_of_study << " ";
 
 	for (int i = 0; i < score.size(); i++){
 		cout << score[i] << " ";
 	}
-	cout << endl;
-	cout << avg << endl;
+
+	cout << " ";
+	cout << avg << " ";
 	cout << scholarship << endl;
 }
 
