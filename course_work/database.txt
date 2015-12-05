@@ -7,4 +7,4 @@
 7	Ivanov	Vitali	Olegovich	male	21	89257711525	ivanov@mail.ru	Saint-Petersburg	Applied-Mathematics	3	AM-01-2012	full-time	3 4 4 5 4 	4	0	
 8	Ivashenko	Alexey	Igorevich	male	18	89037331642	llle@mail.ru	Moscow	Applied-Mathematics	4	AM-01-2011	extramural	4 5 5 5 5 	4.8	2800	
 9	Sizov	Vasily	Andreevich	male	20	89051501243	sizov@rambler.ru	Moscow	Information-Systems-and-Technology	2	IT-01-2012	full-time	4 4 4 4 4 	4	2400	
-10	Ageeva	Ekaterina	Petrovna	female	23	89251616555	katerinka@mail.ru	Tomsk	Information-Systems-and-Technology	4	MK-01-2012	full-time	5 5 5 5 5 	5	3500
+10	Ageeva	Ekaterina	Petrovna	female	23	89251616555	katerinka@mail.ru	Tomsk	Information-Systems-and-Technology	4	MK-01-2012	full-time	5 5 5 5 5 	5	3500	

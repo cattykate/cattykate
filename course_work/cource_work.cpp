@@ -50,6 +50,8 @@ Student::Student() {
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
+	
+	userID++;
 	surname = sn;
 	name = n;
 	middle_name = mn;
@@ -97,30 +99,30 @@ void Database::readFromTheFile() {
 	int i = 0 ;
 	string line;
 	do {
-		data.push_back(Student());
-		in >> data[i].userID;
-		in >> data[i].surname;
-		in >> data[i].name; 
-		in >> data[i].middle_name;
-		in >> data[i].gender;
-		in >> data[i].age;
-		in >> data[i].phone;
-		in >> data[i].email;
-		in >> data[i].hometown;
-		in >> data[i].specialty;
-		in >> data[i].course;
-		in >> data[i].group;
-		in >> data[i].form_of_study;
+		Student currentStudent = Student();
+		in >> currentStudent.userID;
+		in >> currentStudent.surname;
+		in >> currentStudent.name; 
+		in >> currentStudent.middle_name;
+		in >> currentStudent.gender;
+		in >> currentStudent.age;
+		in >> currentStudent.phone;
+		in >> currentStudent.email;
+		in >> currentStudent.hometown;
+		in >> currentStudent.specialty;
+		in >> currentStudent.course;
+		in >> currentStudent.group;
+		in >> currentStudent.form_of_study;
 
 		for (int j = 0; j < 5; j++){
-			data[i].score.push_back(0);
-			in >> data[i].score[j];
+			currentStudent.score.push_back(0);
+			in >> currentStudent.score[j];
 		}
-		in >> data[i].avg >> data[i].scholarship;
+		in >> currentStudent.avg >> currentStudent.scholarship;
+		if (currentStudent.surname != "") data.push_back(currentStudent);
 		i++;
 	} while(getline(in, line));
 
-	deleteUser(data.size() - 1);
 	in.close();
 }
 
