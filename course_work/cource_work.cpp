@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 class Student {
@@ -127,10 +128,6 @@ void Database::readFromTheFile() {
 }
 
 void Database::printDB() {
-	cout << "Student ID " << "Surname " << "Name " << "Middle Name " << "Gender " << "Age "
-		<< "Phone " << "Email " << "Hometown " << "Specialty " << "Course "
-		<< "Group " << "Form of study " << "Scores " << "Average score " << "Scholarship \n\n";
-	
 	for (int i = 0; i < data.size(); i++) data[i].printAllInform();
 }
 
@@ -204,27 +201,28 @@ void Student::getSizeOfScholarship(){
 }
 
 void Student::printAllInform(){
-	cout << userID << " ";
-	cout << surname << " ";
-	cout << name << " ";
-	cout << middle_name << " ";
-	cout << gender << " ";
-	cout << age << " ";
-	cout << phone << " ";
-	cout << email << " ";
-	cout << hometown << " ";
-	cout << specialty << " ";
-	cout << course << " ";
-	cout << group << " ";
-	cout << form_of_study << " ";
+	const char separator    = ' | ';
+
+    cout << left  <<setw(3) << setfill(separator) << userID;
+	cout <<setw(10) << setfill(separator) << surname;
+	cout << setw(10) << setfill(separator) <<name;
+	cout << setw(15) << setfill(separator) << middle_name ;
+	cout << setw(8) << setfill(separator) << gender;
+	cout << setw(2) << setfill(separator) << age;
+	cout << setw(12) << setfill(separator) << phone ;
+	cout << setw(20) << setfill(separator) << email ;
+	cout << setw(14) << setfill(separator) << hometown ;
+	cout << setw(20) << setfill(separator) << specialty ;
+	cout << setw(1) << setfill(separator) << course  ;
+	cout << setw(11) << setfill(separator) << group;
+	cout << setw(12) << setfill(separator) << form_of_study ;
 
 	for (int i = 0; i < score.size(); i++){
-		cout << score[i] << " ";
+		cout << setfill(separator) << score[i] << " ";
 	}
 
-	cout << " ";
-	cout << avg << " ";
-	cout << scholarship << endl;
+	cout << setprecision(2) << avg << " ";
+	cout << setw(4) << scholarship << endl;
 }
 
 void clearConsole() {
@@ -328,6 +326,7 @@ int main() {
 			std:: cout << "ID- 1, Surname - 2: ";
 			cin >> iteam;
 			clearConsole();
+			
 			switch (iteam)
 			{
 			case 1:
