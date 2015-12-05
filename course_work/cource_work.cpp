@@ -243,13 +243,6 @@ void showTheMenu(){
 	cout << "Your choice is \t";
 }
 
-void showTheMenuDelete(){ 
-	cout << "Push... \n 1. if you would like to enter the Student ID\n" 
-		 << "2. if you would like to enter the student surname\n"
-		 << "3. Exit to the main menu\n\n";
-	cout << "Your choise is \t";
-}
-
 int main() {
 
 	/*Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
@@ -328,30 +321,31 @@ int main() {
 		case 5:
 			cout << "Please, enter the surname\b";
 			cin >> surname;
+			clearConsole();
 			db.findUser(surname);
 			break;
 		case 6:
+			std:: cout << "ID- 1, Surname - 2: ";
 			cin >> iteam;
-			do {
-				switch (iteam)
-				{
-				case 1:
-					cout << "Enter the Student ID\n";
-					cin >> id;
-					db.deleteUser(id);
-				case 2:
-					cout << "Enter the Student surname\n";
-					cin >> surname;
-					db.deleteUser(surname);
-				case 3:
-					showTheMenu();
-				default:
-					cout << "Please! Enter 1, 2, 3!" << endl;
-					break;
-				}
-			} while (iteam != 3);
-			
-			break;
+			clearConsole();
+			switch (iteam)
+			{
+			case 1:
+				cout << "Enter the Student ID\n";
+				cin >> id;
+				clearConsole();
+				db.deleteUser(id);
+				break;
+			case 2:
+				cout << "Enter the Student surname\n";
+				cin >> surname;
+				clearConsole();
+				db.deleteUser(surname);
+				break;
+			default:
+				cout << "Please! Enter 1, 2!" << endl;
+				break;
+			}
 		
 		case 7:
 			cout << "Good bye!" << endl;
