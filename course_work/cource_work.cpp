@@ -39,6 +39,7 @@ public:
 	void writeToTheFile();
 	void readFromTheFile();
 	void printDB();
+	void deleteDB();
 	void addUser(Student st);
 	void deleteUser(int studentID);
 	void deleteUser(string surname);
@@ -131,13 +132,28 @@ void Database::printDB() {
 	for (int i = 0; i < data.size(); i++) data[i].printAllInform();
 }
 
+void Database::deleteDB() {
+	data.clear();
+}
+
 void Database::addUser(Student st){
 	data.push_back(st);
 }
 
 void Database::deleteUser(int userID) {
-    data.erase(data.begin() + (userID-1)); /* (numberOfStudent - 1) because we have vector with elements from 0...
-		 to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" */
+	bool result = 0;
+	for (int i = 0; i < data.size(); i++){
+		if (userID == data[i].userID) {
+			data.erase(data.begin() + (data[i].userID - 1));// (numberOfStudent - 1) because we have vector with elements from 0...
+		// to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" 
+			result = 1;
+		}
+	}
+	if (result == false) {
+		cout << "Student not found! \n" << endl;
+	}
+	else
+		cout << "Student is deleted! \n" << endl;
 }
 
 void Database::deleteUser(string surname){
@@ -201,7 +217,8 @@ void Student::getSizeOfScholarship(){
 }
 
 void Student::printAllInform(){
-	const char separator = ' | ';
+
+	const char separator = ' ';
 
     cout << left << setw(4) << setfill(separator) << userID;
 	cout << setw(10) << setfill(separator) << surname;
@@ -226,7 +243,7 @@ void Student::printAllInform(){
 }
 
 void printCapConsole(){
-	const char separator = ' | ';
+	const char separator = ' ';
 
 	cout << left << setw(4) << "ID";
 	cout << setw(10) << setfill(separator) << "Surname";
@@ -256,13 +273,14 @@ void showTheMenu(){
 	cout << endl;
 
 	cout << "You can ... \n\n";
-	cout << "1. Read the database \n" 
-		 << "2. Write the database to the file \n" 
-		 << "3. Add the student to the database \n" 
-		 << "4. Print the database to the screen \n"
-		 << "5. Find the student \n" 
-		 << "6. Delete the student \n" 
-		 << "7. Leave the app \n\n";
+	cout << "1. Read the database \n"
+		<< "2. Write the database to the file \n"
+		<< "3. Add the student to the database \n"
+		<< "4. Print the database to the screen \n"
+		<< "5. Find the student \n"
+		<< "6. Delete the student \n"
+		<< "7. Delete the database \n"
+		<< "8. Leave the app \n\n";
 	cout << "Your choice is \t";
 }
 
@@ -315,10 +333,7 @@ int main() {
 			cout << "ok!" << endl;
 			break;
 		case 3:
-			//db.addUser(Maria);
-			//db.addUser(Elena);
-			//db.addUser(Alexandra);
-			cout << "ok!students are in the database" << endl;
+			cout << "Enter the information about student" << endl;
 			break;
 		case 4:
 			printCapConsole();
@@ -353,13 +368,16 @@ int main() {
 				cout << "Please! Enter 1, 2!" << endl;
 				break;
 			}
-		
-		case 7:
+		case 7: 
+			db.deleteDB();
+			cout << "The database is clear!" << endl;
+			break;
+		case 8:
 			break;
 		default:
 			cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
 		} 
-	} while (iteam != 7);
+	} while (iteam != 8);
 	
 	return 0;
 }
