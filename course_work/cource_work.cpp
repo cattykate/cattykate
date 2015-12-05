@@ -230,6 +230,10 @@ void clearConsole() {
 }
 
 void showTheMenu(){
+	cout << endl << endl;
+	cout << "****************************************************";
+	cout << endl;
+
 	cout << "You can ... \n\n";
 	cout << "1. Read the database \n" 
 		 << "2. Write the database to the file \n" 
@@ -317,7 +321,7 @@ int main() {
 			db.printDB();
 			break;
 		case 5:
-			cout << "Please, enter the surname\b";
+			cout << "Please, enter the surname: \b";
 			cin >> surname;
 			clearConsole();
 			db.findUser(surname);
