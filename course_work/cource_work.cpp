@@ -72,7 +72,7 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 }
 
 void Database::writeToTheFile() { 
-	ofstream out("C:/Users/Vit/Desktop/cattykate/course_work/database.txt"); 
+	ofstream out("database.txt"); 
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -93,7 +93,7 @@ void Database::writeToTheFile() {
 }
 
 void Database::readFromTheFile() {
-	ifstream in("C:/Users/Vit/Desktop/cattykate/course_work/database.txt");
+	ifstream in("database.txt");
 	if (!in) {
 		cout << "can't open the file ;(" << endl;
 	}
