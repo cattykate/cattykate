@@ -99,7 +99,7 @@ void Database::readFromTheFile() {
 	}
 	int i = 0 ;
 	string line;
-	while(getline(in, line)) {
+	do {
 		data.push_back(Student());
 		in >> data[i].userID;
 		in >> data[i].surname;
@@ -121,7 +121,8 @@ void Database::readFromTheFile() {
 		}
 		in >> data[i].avg >> data[i].scholarship;
 		i++;
-	}
+	} while(getline(in, line));
+	
 	in.close();
 }
 
