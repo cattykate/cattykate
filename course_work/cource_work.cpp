@@ -44,7 +44,9 @@ public:
 	void findUser(string surname);
 };
 
-Student::Student() { }
+Student::Student() {
+	userID ++;
+}
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
@@ -226,6 +228,10 @@ void Student::printAllInform(){
 	cout << scholarship << endl;
 }
 
+void clearConsole() {
+	for (int i = 0 ; i < 100; i++) std::cout<<std::endl;
+}
+
 void showTheMenu(){
 	cout << "You can ... \n\n";
 	cout << "1. Read the database \n" 
@@ -300,13 +306,15 @@ int main() {
 	do {
 		showTheMenu();
 		cin >> iteam;
+		clearConsole();
+
 		switch (iteam){
 		case 1:
 			db.readFromTheFile();
 			cout << "The database is read!" << endl;
 			break;
 		case 2:
-			db.writeToTheFile();;
+			db.writeToTheFile();
 			cout << "ok!" << endl;
 			break;
 		case 3:
@@ -323,7 +331,6 @@ int main() {
 			cin >> surname;
 			db.findUser(surname);
 			break;
-		
 		case 6:
 			cin >> iteam;
 			do {
