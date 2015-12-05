@@ -331,7 +331,7 @@ int main() {
 			db.findUser(surname);
 			break;
 		case 6:
-			std:: cout << "ID- 1, Surname - 2: ";
+			cout << "ID- 1, Surname - 2: ";
 			cin >> iteam;
 			clearConsole();
 			
