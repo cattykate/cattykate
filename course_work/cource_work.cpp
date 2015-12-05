@@ -124,7 +124,8 @@ void Database::readFromTheFile() {
 		in >> data[i].avg >> data[i].scholarship;
 		i++;
 	} while(getline(in, line));
-	
+
+	deleteUser(data.size() - 1);
 	in.close();
 }
 
