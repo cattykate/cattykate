@@ -98,7 +98,8 @@ void Database::readFromTheFile() {
 		cout << "can't open the file ;(" << endl;
 	}
 	int i = 0 ;
-	while(in.is_open()) {
+	string line;
+	while(getline(in, line)) {
 		data.push_back(Student());
 		in >> data[i].userID;
 		in >> data[i].surname;
