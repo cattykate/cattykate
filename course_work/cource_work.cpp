@@ -100,10 +100,19 @@ void Database::readFromTheFile() {
 	int i = 0 ;
 	while(in.is_open()) {
 		data.push_back(Student());
-		in >> data[i].userID >> data[i].surname >> data[i].name >> data[i].middle_name >>
-			data[i].gender >> data[i].age >> data[i].phone >> 
-			data[i].email >> data[i].hometown >> data[i].specialty >>
-			data[i].course >> data[i].group >> data[i].form_of_study;
+		in >> data[i].userID;
+		in >> data[i].surname;
+		in >> data[i].name; 
+		in >> data[i].middle_name;
+		in >> data[i].gender;
+		in >> data[i].age;
+		in >> data[i].phone;
+		in >> data[i].email;
+		in >> data[i].hometown;
+		in >> data[i].specialty;
+		in >> data[i].course;
+		in >> data[i].group;
+		in >> data[i].form_of_study;
 
 		for (int j = 0; j < 5; j++){
 			data[i].score.push_back(0);
