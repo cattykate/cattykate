@@ -35,7 +35,7 @@ public:
 class Database {
 public:
 	vector <Student> data; 
-		
+
 	void writeToTheFile();
 	void readFromTheFile();
 	void printDB();
@@ -171,7 +171,6 @@ void Database::deleteUser(string surname){
 	else 
 		cout << "Student " << surname << " is deleted! \n" << endl;
 }
-
 
 void Database::findUser(string surname) {
 	bool result = 0;
@@ -318,6 +317,9 @@ int main() {
 	int id = 0;
 	string surname;
 
+	Student newStudent = Student();
+	const char separator = ' ';
+
 	do {
 		showTheMenu();
 		cin >> iteam;
@@ -334,6 +336,18 @@ int main() {
 			break;
 		case 3:
 			cout << "Enter the information about student" << endl;
+			cout  << "Surname	Name	Middle name		Gender		Age		Phone	Email	Hometown	Specialty	Course	Group	Form of study	Scores \n\n";
+			cin >> newStudent.surname >> newStudent.name >> newStudent.middle_name >> newStudent.gender
+				>> newStudent.age >> newStudent.phone >>  newStudent.email >> newStudent.hometown
+				>> newStudent.specialty >> newStudent.course >> newStudent.group >> newStudent.form_of_study;
+			
+			/*for (int i = 0; i < 5; i++){
+				cin >> newStudent.score[i];
+			} 
+			*/
+			newStudent.getAverageScore();
+			newStudent.getSizeOfScholarship();
+			db.addUser(newStudent);
 			break;
 		case 4:
 			printCapConsole();
