@@ -2,10 +2,12 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 class Student {
 public:
+	Student();
 	Student(string sn, string n, string mn, string gen, int a, string ph,
 			string em, string ht, string spec, int c, string gr, string fos, vector<int> s);
 	int userID;
@@ -43,8 +45,14 @@ public:
 	void findUser(string surname);
 };
 
+Student::Student() {
+	userID ++;
+}
+
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
+	
+	userID++;
 	surname = sn;
 	name = n;
 	middle_name = mn;
@@ -68,14 +76,9 @@ void Database::writeToTheFile() {
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
-	out << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
-		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
-		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
 
 	for (int i = 0; i < data.size(); i++)
 	{
-		data[i].userID = i+1;
-
 		out << data[i].userID << "\t" << data[i].surname << "\t" << data[i].name << "\t" << data[i].middle_name << "\t"
 			<< data[i].gender << "\t" << data[i].age << "\t" << data[i].phone << "\t"
 			<< data[i].email << "\t" << data[i].hometown << "\t" << data[i].specialty << "\t"
@@ -94,25 +97,37 @@ void Database::readFromTheFile() {
 	if (!in) {
 		cout << "can't open the file ;(" << endl;
 	}
-	for (int i = 0; i < data.size(); i++){
-		in >> data[i].userID >> data[i].surname >> data[i].name >> data[i].middle_name >>
-			data[i].gender >> data[i].age >> data[i].phone >> 
-			data[i].email >> data[i].hometown >> data[i].specialty >>
-			data[i].course >> data[i].group >> data[i].form_of_study;
+	int i = 0 ;
+	string line;
+	do {
+		Student currentStudent = Student();
+		in >> currentStudent.userID;
+		in >> currentStudent.surname;
+		in >> currentStudent.name; 
+		in >> currentStudent.middle_name;
+		in >> currentStudent.gender;
+		in >> currentStudent.age;
+		in >> currentStudent.phone;
+		in >> currentStudent.email;
+		in >> currentStudent.hometown;
+		in >> currentStudent.specialty;
+		in >> currentStudent.course;
+		in >> currentStudent.group;
+		in >> currentStudent.form_of_study;
 
-		for (int j = 0; j < data[i].score.size(); j++){
-			in >> data[i].score[j];
+		for (int j = 0; j < 5; j++){
+			currentStudent.score.push_back(0);
+			in >> currentStudent.score[j];
 		}
-		in >> data[i].avg >> data[i].scholarship;
-	}
+		in >> currentStudent.avg >> currentStudent.scholarship;
+		if (currentStudent.surname != "") data.push_back(currentStudent);
+		i++;
+	} while(getline(in, line));
+
 	in.close();
 }
 
 void Database::printDB() {
-	cout << "Student ID \t" << "Surname \t" << "Name \t" << "Middle Name \t" << "Gender \t" << "Age \t"
-		<< "Phone \t" << "Email \t" << "Hometown \t" << "Specialty  \t" << "Course \t"
-		<< "Group \t" << "Form of study \t" << "Scores \t" << "Average score \t" << "Scholarship \t\n\n";
-	
 	for (int i = 0; i < data.size(); i++) data[i].printAllInform();
 }
 
@@ -186,29 +201,39 @@ void Student::getSizeOfScholarship(){
 }
 
 void Student::printAllInform(){
-	cout << userID << endl;
-	cout << surname << endl;
-	cout << name << endl;
-	cout << middle_name << endl;
-	cout << gender << endl;
-	cout << age << endl;
-	cout << phone << endl;
-	cout << email << endl;
-	cout << hometown << endl;
-	cout << specialty << endl;
-	cout << course << endl;
-	cout << group << endl;
-	cout << form_of_study << endl;
+	const char separator    = ' | ';
+
+    cout << left  <<setw(3) << setfill(separator) << userID;
+	cout <<setw(10) << setfill(separator) << surname;
+	cout << setw(10) << setfill(separator) <<name;
+	cout << setw(15) << setfill(separator) << middle_name ;
+	cout << setw(8) << setfill(separator) << gender;
+	cout << setw(2) << setfill(separator) << age;
+	cout << setw(12) << setfill(separator) << phone ;
+	cout << setw(20) << setfill(separator) << email ;
+	cout << setw(14) << setfill(separator) << hometown ;
+	cout << setw(20) << setfill(separator) << specialty ;
+	cout << setw(1) << setfill(separator) << course  ;
+	cout << setw(11) << setfill(separator) << group;
+	cout << setw(12) << setfill(separator) << form_of_study ;
 
 	for (int i = 0; i < score.size(); i++){
-		cout << score[i] << " ";
+		cout << setfill(separator) << score[i] << " ";
 	}
-	cout << endl;
-	cout << avg << endl;
-	cout << scholarship << endl;
+
+	cout << setprecision(2) << avg << " ";
+	cout << setw(4) << scholarship << endl;
+}
+
+void clearConsole() {
+	for (int i = 0 ; i < 100; i++) std::cout<<std::endl;
 }
 
 void showTheMenu(){
+	cout << endl << endl;
+	cout << "****************************************************";
+	cout << endl;
+
 	cout << "You can ... \n\n";
 	cout << "1. Read the database \n" 
 		 << "2. Write the database to the file \n" 
@@ -218,13 +243,6 @@ void showTheMenu(){
 		 << "6. Delete the student \n" 
 		 << "7. Leave the app \n\n";
 	cout << "Your choice is \t";
-}
-
-void showTheMenuDelete(){ 
-	cout << "Push... \n 1. if you would like to enter the Student ID\n" 
-		 << "2. if you would like to enter the student surname\n"
-		 << "3. Exit to the main menu\n\n";
-	cout << "Your choise is \t";
 }
 
 int main() {
@@ -282,13 +300,15 @@ int main() {
 	do {
 		showTheMenu();
 		cin >> iteam;
+		clearConsole();
+
 		switch (iteam){
 		case 1:
 			db.readFromTheFile();
 			cout << "The database is read!" << endl;
 			break;
 		case 2:
-			db.writeToTheFile();;
+			db.writeToTheFile();
 			cout << "ok!" << endl;
 			break;
 		case 3:
@@ -301,33 +321,34 @@ int main() {
 			db.printDB();
 			break;
 		case 5:
-			cout << "Please, enter the surname\b";
+			cout << "Please, enter the surname: \b";
 			cin >> surname;
+			clearConsole();
 			db.findUser(surname);
 			break;
-		
 		case 6:
+			std:: cout << "ID- 1, Surname - 2: ";
 			cin >> iteam;
-			do {
-				switch (iteam)
-				{
-				case 1:
-					cout << "Enter the Student ID\n";
-					cin >> id;
-					db.deleteUser(id);
-				case 2:
-					cout << "Enter the Student surname\n";
-					cin >> surname;
-					db.deleteUser(surname);
-				case 3:
-					showTheMenu();
-				default:
-					cout << "Please! Enter 1, 2, 3!" << endl;
-					break;
-				}
-			} while (iteam != 3);
+			clearConsole();
 			
-			break;
+			switch (iteam)
+			{
+			case 1:
+				cout << "Enter the Student ID\n";
+				cin >> id;
+				clearConsole();
+				db.deleteUser(id);
+				break;
+			case 2:
+				cout << "Enter the Student surname\n";
+				cin >> surname;
+				clearConsole();
+				db.deleteUser(surname);
+				break;
+			default:
+				cout << "Please! Enter 1, 2!" << endl;
+				break;
+			}
 		
 		case 7:
 			cout << "Good bye!" << endl;
