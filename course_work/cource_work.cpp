@@ -201,32 +201,53 @@ void Student::getSizeOfScholarship(){
 }
 
 void Student::printAllInform(){
-	const char separator    = ' | ';
+	const char separator = ' | ';
 
-    cout << left  <<setw(3) << setfill(separator) << userID;
-	cout <<setw(10) << setfill(separator) << surname;
+    cout << left << setw(4) << setfill(separator) << userID;
+	cout << setw(10) << setfill(separator) << surname;
 	cout << setw(10) << setfill(separator) <<name;
-	cout << setw(15) << setfill(separator) << middle_name ;
+	cout << setw(15) << setfill(separator) << middle_name;
 	cout << setw(8) << setfill(separator) << gender;
-	cout << setw(2) << setfill(separator) << age;
-	cout << setw(12) << setfill(separator) << phone ;
-	cout << setw(20) << setfill(separator) << email ;
+	cout << setw(4) << setfill(separator) << age;
+	cout << setw(12) << setfill(separator) << phone;
+	cout << setw(20) << setfill(separator) << email;
 	cout << setw(14) << setfill(separator) << hometown ;
 	cout << setw(20) << setfill(separator) << specialty ;
-	cout << setw(1) << setfill(separator) << course  ;
+	cout << setw(8) << setfill(separator) << course ;
 	cout << setw(11) << setfill(separator) << group;
-	cout << setw(12) << setfill(separator) << form_of_study ;
+	cout << setw(14) << setfill(separator) << form_of_study;
 
 	for (int i = 0; i < score.size(); i++){
 		cout << setfill(separator) << score[i] << " ";
 	}
+	cout << " ";
+	cout << setw(5) << setprecision(2) << avg;
+	cout << setw(11) << scholarship << endl;
+}
 
-	cout << setprecision(2) << avg << " ";
-	cout << setw(4) << scholarship << endl;
+void printCapConsole(){
+	const char separator = ' | ';
+
+	cout << left << setw(4) << "ID";
+	cout << setw(10) << setfill(separator) << "Surname";
+	cout << setw(10) << setfill(separator) << "Name";
+	cout << setw(15) << setfill(separator) << "Middle name";
+	cout << setw(8) << setfill(separator) << "Gender";
+	cout << setw(4) << setfill(separator) << "Age";
+	cout << setw(12) << setfill(separator) << "Phone";
+	cout << setw(20) << setfill(separator) << "Email";
+	cout << setw(14) << setfill(separator) << "Hometown";
+	cout << setw(20) << setfill(separator) << "Specialty";
+	cout << setw(8) << setfill(separator) << "Course";
+	cout << setw(11) << setfill(separator) << "Group";
+	cout << setw(14) << setfill(separator) << "Form of study";
+	cout << setw(11) << setfill(separator) << "Scores";
+	cout << setw(5) << setfill(separator) << "Avg";
+	cout << setw(11) << setfill(separator) << "Scholarship\n\n";
 }
 
 void clearConsole() {
-	for (int i = 0 ; i < 100; i++) std::cout<<std::endl;
+	for (int i = 0 ; i < 100; i++) cout<<endl;
 }
 
 void showTheMenu(){
@@ -270,24 +291,6 @@ int main() {
 
 	Database db;
 	db.readFromTheFile();
-
-	/*db.addUser(Maria); 
-	db.addUser(Elena);
-	db.addUser(Alexandra); 
-	*/
-	//db.writeToTheFile(); // Masha, Lena, Sasha are in the file
-
-	//db.deleteUser("Petrova"); 
-	//db.writeToTheFile(); // Petrova is deleted from the file
-	//db.deleteUser(2); // student 2 is deleted (Lena deleted)
-	//db.writeToTheFile(); // only Alexandra in the file
-
-	/* so, in my mind all functions work well, I checked it!
-	but now i want to go to the bed( but i think that i need to add a function that will display our menu. 
-	and i cause it to the end of each "case". then it will be work more correctly. what do you say on it? :)
-	*/
-	
-	//this is a test mode!!!i know that it's necessary to edit
 	
 	cout << endl << "==========================================\n\n";
 	cout << "Welcome to the database **Students** \n\n";
@@ -318,6 +321,7 @@ int main() {
 			cout << "ok!students are in the database" << endl;
 			break;
 		case 4:
+			printCapConsole();
 			db.printDB();
 			break;
 		case 5:
@@ -351,13 +355,11 @@ int main() {
 			}
 		
 		case 7:
-			cout << "Good bye!" << endl;
 			break;
 		default:
 			cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
 		} 
 	} while (iteam != 7);
 	
-	//system("pause");
 	return 0;
 }
