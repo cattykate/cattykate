@@ -6,6 +6,7 @@ using namespace std;
 
 class Student {
 public:
+	Student();
 	Student(string sn, string n, string mn, string gen, int a, string ph,
 			string em, string ht, string spec, int c, string gr, string fos, vector<int> s);
 	int userID;
@@ -42,6 +43,8 @@ public:
 	void deleteUser(string surname);
 	void findUser(string surname);
 };
+
+Student::Student() { }
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
@@ -90,20 +93,24 @@ void Database::writeToTheFile() {
 }
 
 void Database::readFromTheFile() {
-	ifstream in("database.txt");
+	ifstream in("C:/Users/Vit/Desktop/cattykate/course_work/database.txt");
 	if (!in) {
 		cout << "can't open the file ;(" << endl;
 	}
-	for (int i = 0; i < data.size(); i++){
+	int i = 0 ;
+	while(in.is_open()) {
+		data.push_back(Student());
 		in >> data[i].userID >> data[i].surname >> data[i].name >> data[i].middle_name >>
 			data[i].gender >> data[i].age >> data[i].phone >> 
 			data[i].email >> data[i].hometown >> data[i].specialty >>
 			data[i].course >> data[i].group >> data[i].form_of_study;
 
-		for (int j = 0; j < data[i].score.size(); j++){
+		for (int j = 0; j < 5; j++){
+			data[i].score.push_back(0);
 			in >> data[i].score[j];
 		}
 		in >> data[i].avg >> data[i].scholarship;
+		i++;
 	}
 	in.close();
 }
