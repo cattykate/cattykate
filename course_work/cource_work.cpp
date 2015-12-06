@@ -125,7 +125,10 @@ void Database::readFromTheFile() {
 			in >> currentStudent.score[j];
 		}
 		in >> currentStudent.avg >> currentStudent.scholarship;
+		
 		if (currentStudent.surname != "") data.push_back(currentStudent);
+		else counter--;
+		
 		i++;
 	} while(getline(in, line));
 
@@ -420,6 +423,7 @@ int main() {
 				cout << "Please! Enter 1, 2!" << endl;
 				break;
 			}
+			break;
 		case 7: 
 			db.deleteDB();
 			cout << "The database is clear!" << endl;
@@ -427,7 +431,8 @@ int main() {
 		case 8:
 			break;
 		default:
-			cout << "Please! Enter 1, 2, 3, 4, 5 or 6!" << endl;
+			cout << "Please! Enter 1, 2, 3, 4, 5, 6, 7!" << endl;
+			break;
 		} 
 	} while (iteam != 8);
 	
