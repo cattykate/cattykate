@@ -151,7 +151,7 @@ void Database::deleteUser(int userID) {
 	bool result = 0;
 	for (int i = 0; i < data.size(); i++){
 		if (userID == data[i].userID) {
-			data.erase(data.begin() + (data[i].userID - 1));// (numberOfStudent - 1) because we have vector with elements from 0...
+			data.erase(data.begin() + i);// (numberOfStudent - 1) because we have vector with elements from 0...
 		// to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" 
 			result = 1;
 		}
@@ -167,7 +167,7 @@ void Database::deleteUser(string surname){
 	bool result = 0;
 	for (int i = 0; i < data.size(); i++){
 		if (surname == data[i].surname) {
-			data.erase(data.begin() + (data[i].userID-1));
+			data.erase(data.begin() + i);
 			result = 1;
 		}
 	}
