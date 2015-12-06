@@ -5,6 +5,8 @@
 #include <iomanip>
 using namespace std;
 
+int counter = 0;
+
 class Student {
 public:
 	Student();
@@ -47,13 +49,15 @@ public:
 };
 
 Student::Student() {
-	userID ++;
+	counter++;
+	userID = counter;
 }
 
 Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 	string em, string ht, string spec, int c, string gr, string fos, vector<int> s) {
 	
-	userID++;
+	counter++;
+	userID = counter;
 	surname = sn;
 	name = n;
 	middle_name = mn;
@@ -73,7 +77,7 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 }
 
 void Database::writeToTheFile() { 
-	ofstream out("database.txt"); 
+	ofstream out("C:/Users/Vit/Desktop/cattykate/course_work/database.txt"); 
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -94,7 +98,7 @@ void Database::writeToTheFile() {
 }
 
 void Database::readFromTheFile() {
-	ifstream in("database.txt");
+	ifstream in("C:/Users/Vit/Desktop/cattykate/course_work/database.txt");
 	if (!in) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -317,7 +321,6 @@ int main() {
 	int id = 0;
 	string surname;
 
-	Student newStudent = Student();
 	const char separator = ' ';
 
 	do {
@@ -334,21 +337,56 @@ int main() {
 			db.writeToTheFile();
 			cout << "ok!" << endl;
 			break;
-		case 3:
+		case 3: {
+			Student newStudent = Student();
 			cout << "Enter the information about student" << endl;
-			cout  << "Surname	Name	Middle name		Gender		Age		Phone	Email	Hometown	Specialty	Course	Group	Form of study	Scores \n\n";
-			cin >> newStudent.surname >> newStudent.name >> newStudent.middle_name >> newStudent.gender
-				>> newStudent.age >> newStudent.phone >>  newStudent.email >> newStudent.hometown
-				>> newStudent.specialty >> newStudent.course >> newStudent.group >> newStudent.form_of_study;
+			cout  << "Surname: ";
+			cin >> newStudent.surname;
 			
-			/*for (int i = 0; i < 5; i++){
+			cout << "Name: ";
+			cin >> newStudent.name;
+
+			cout << "Middle Name: ";
+			cin >> newStudent.middle_name;
+			
+			cout << "Gender: ";
+			cin >> newStudent.gender;
+			
+			cout << "Age: ";
+			cin >> newStudent.age;
+			
+			cout << "Phone: ";
+			cin >> newStudent.phone;
+			
+			cout << "e-mail: ";
+			cin >>  newStudent.email;
+			
+			cout << "hometown: ";
+			cin >> newStudent.hometown;
+			
+			cout << "specialty: ";
+			cin >> newStudent.specialty; 
+			
+			cout << "course: ";
+			cin >> newStudent.course;
+			
+			cout << "group: ";
+			cin >> newStudent.group;
+			
+			cout << "form of study: ";
+			cin >> newStudent.form_of_study;
+			
+			cout << "scores: ";
+
+			for (int i = 0; i < 5; i++){
+				newStudent.score.push_back(0);
 				cin >> newStudent.score[i];
 			} 
-			*/
+			
 			newStudent.getAverageScore();
 			newStudent.getSizeOfScholarship();
 			db.addUser(newStudent);
-			break;
+			break; }
 		case 4:
 			printCapConsole();
 			db.printDB();
