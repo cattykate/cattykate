@@ -77,7 +77,7 @@ Student::Student(string sn, string n, string mn, string gen, int a, string ph,
 }
 
 void Database::writeToTheFile() { 
-	ofstream out("C:/Users/Vit/Desktop/cattykate/course_work/database.txt"); 
+	ofstream out("database.txt"); 
 	if (!out) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -98,7 +98,7 @@ void Database::writeToTheFile() {
 }
 
 void Database::readFromTheFile() {
-	ifstream in("C:/Users/Vit/Desktop/cattykate/course_work/database.txt");
+	ifstream in("database.txt");
 	if (!in) {
 		cout << "can't open the file ;(" << endl;
 	}
@@ -128,7 +128,6 @@ void Database::readFromTheFile() {
 		
 		if (currentStudent.surname != "") data.push_back(currentStudent);
 		else counter--;
-		
 		i++;
 	} while(getline(in, line));
 
@@ -270,7 +269,8 @@ void printCapConsole(){
 }
 
 void clearConsole() {
-	for (int i = 0 ; i < 100; i++) cout<<endl;
+	//for (int i = 0 ; i < 100; i++) cout<<endl;
+	system("cls");
 }
 
 void showTheMenu(){
@@ -361,25 +361,25 @@ int main() {
 			cout << "Phone: ";
 			cin >> newStudent.phone;
 			
-			cout << "e-mail: ";
+			cout << "E-mail: ";
 			cin >>  newStudent.email;
 			
-			cout << "hometown: ";
+			cout << "Hometown: ";
 			cin >> newStudent.hometown;
 			
-			cout << "specialty: ";
+			cout << "Specialty: ";
 			cin >> newStudent.specialty; 
 			
-			cout << "course: ";
+			cout << "Course: ";
 			cin >> newStudent.course;
 			
-			cout << "group: ";
+			cout << "Group: ";
 			cin >> newStudent.group;
 			
-			cout << "form of study: ";
+			cout << "Form of study: ";
 			cin >> newStudent.form_of_study;
 			
-			cout << "scores: ";
+			cout << "Scores: ";
 
 			for (int i = 0; i < 5; i++){
 				newStudent.score.push_back(0);
@@ -389,6 +389,7 @@ int main() {
 			newStudent.getAverageScore();
 			newStudent.getSizeOfScholarship();
 			db.addUser(newStudent);
+			cout << "The student is added to the database!";
 			break; }
 		case 4:
 			printCapConsole();
