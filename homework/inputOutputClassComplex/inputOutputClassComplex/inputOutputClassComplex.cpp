@@ -4,10 +4,10 @@ using namespace std;
 
 class Complex{
 public:
-	Complex(double re, double im);
+	Complex(double im, double re);
 
-	double real;
 	double image;
+	double real;
 	double argument;
 	double module;
 
@@ -15,12 +15,11 @@ public:
 	void getModule();
 };
 
-Complex::Complex(double re, double im){
-	real = re;
+Complex::Complex(double im, double re){
 	image = im;
-
-	void getArgument();
-	void getModule();
+	real = re;
+	getArgument();
+	getModule();
 }
 
 void Complex::getArgument(){
@@ -36,7 +35,7 @@ void Complex::getModule(){
 
 int main() {
 
-	Complex c(1, 1);
+	Complex c(1.0, 1.0);
 	int a = 2;
 
 	system("pause");
