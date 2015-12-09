@@ -61,9 +61,11 @@ int main() {
 	Complex c(1.0, 1.0);
 	cout << c;
 
-	Complex a = Complex();
+	Complex a = Complex(0, 0);
+	
 	cin >> a; 
-
+	a.getArgument(); 
+	a.getModule();
 	cout << a;
 	
 	ofstream out("Complex.txt");
