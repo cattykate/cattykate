@@ -40,22 +40,28 @@ ostream &operator<<(ostream &stream, Complex obj)//obj - output operator
 {
 	stream << "|z| = " << setprecision(5) << obj.module << endl;
 	stream << "cos(Phi) = " << setprecision(5) << cos(obj.argument) << endl;
-	stream << "sin(Phi) = " << setprecision(5) << sin(obj.argument) << endl;
+	stream << "sin(Phi) = " << setprecision(5) << sin(obj.argument) << endl << endl;
 	return stream;
 }
 
-void writeToTheFile(){ 
-	ofstream out("Complex.txt");
-	if (!out) cout << "Can't open the file!";
-	//out << c; 
-	out.close();
+ofstream &operator<<(ofstream &stream, Complex obj)
+{
+	stream << "|z| = " << setprecision(5) << obj.module << endl;
+	stream << "cos(Phi) = " << setprecision(5) << cos(obj.argument) << endl;
+	stream << "sin(Phi) = " << setprecision(5) << sin(obj.argument) << endl << endl;
+	return stream;
 }
-
 int main() {
 
 	Complex c(1.0, 1.0);
-	cout << c;
+	Complex b(-4.0, 0);
+	cout << c << b;
 
+	ofstream out("Complex.txt");
+	if (!out) cout << "Can't open the file!";
+	out << c << b;
+	out.close();
+	
 	system("pause");
 	return 0;
 }
