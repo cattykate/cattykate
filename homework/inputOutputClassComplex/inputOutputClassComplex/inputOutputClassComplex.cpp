@@ -1,5 +1,7 @@
 #include <iostream>
 #include <math.h>
+#include <fstream>
+#include <iomanip>
 using namespace std;
 
 class Complex{
@@ -18,6 +20,7 @@ public:
 Complex::Complex(double im, double re){
 	image = im;
 	real = re;
+
 	getArgument();
 	getModule();
 }
@@ -33,10 +36,26 @@ void Complex::getModule(){
 	module = sqrt(image*image + real*real);
 }
 
+ostream &operator<<(ostream &stream, Complex obj)//obj - output operator
+{
+	stream << "|z| = " << obj.module << endl;
+	stream << "cos(Phi) = " << setprecision(6) << cos(obj.argument) << endl;
+	stream << "sin(Phi) = " << setprecision(6) << sin(obj.argument) << endl;
+	return stream;
+}
+
+void writeToTheFile(){ 
+	ofstream();
+	ofstream out("Complex.txt");
+	if (!out) cout << "Can't open the file!";
+//	out << c; 
+	out.close();
+}
+
 int main() {
 
 	Complex c(1.0, 1.0);
-	int a = 2;
+	cout << c;
 
 	system("pause");
 	return 0;
