@@ -45,10 +45,9 @@ ostream &operator<<(ostream &stream, Complex obj)//obj - output operator
 }
 
 void writeToTheFile(){ 
-	ofstream();
 	ofstream out("Complex.txt");
 	if (!out) cout << "Can't open the file!";
-//	out << c; 
+	//out << c; 
 	out.close();
 }
 
