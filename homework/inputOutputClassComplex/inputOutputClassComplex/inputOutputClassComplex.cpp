@@ -25,6 +25,8 @@ Complex::Complex(double im, double re){
 	getModule();
 }
 
+Complex::Complex(){}
+
 void Complex::getArgument(){
 	const double PI = 3.14159265;
 	if (real > 0) argument = atan(image / real);
@@ -59,8 +61,10 @@ int main() {
 	Complex c(1.0, 1.0);
 	cout << c;
 
-	Complex a;
-	cin >> a;
+	Complex a = Complex();
+	cin >> a; 
+
+	cout << a;
 	
 	ofstream out("Complex.txt");
 	if (!out) cout << "Can't open the file!";
