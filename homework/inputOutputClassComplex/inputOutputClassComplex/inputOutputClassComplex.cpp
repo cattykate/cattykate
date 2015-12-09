@@ -38,9 +38,9 @@ void Complex::getModule(){
 
 ostream &operator<<(ostream &stream, Complex obj)//obj - output operator
 {
-	stream << "|z| = " << obj.module << endl;
-	stream << "cos(Phi) = " << setprecision(6) << cos(obj.argument) << endl;
-	stream << "sin(Phi) = " << setprecision(6) << sin(obj.argument) << endl;
+	stream << "|z| = " << setprecision(5) << obj.module << endl;
+	stream << "cos(Phi) = " << setprecision(5) << cos(obj.argument) << endl;
+	stream << "sin(Phi) = " << setprecision(5) << sin(obj.argument) << endl;
 	return stream;
 }
 
