@@ -46,22 +46,22 @@ ostream &myManipulator(ostream &out){
 	return out;
 }
 
-ostream &operator<<(ostream &out, Complex &obj){
-	out << "|z| = " << obj.module << myManipulator << endl;
-	out << "cos(Phi) = " << cos(obj.argument) << myManipulator << endl;
-	out << "sin(Phi) = " << sin(obj.argument) << myManipulator << endl << endl;
+ostream &operator<<(ostream &out, Complex &c){
+	out << "|z| = " << c.module << myManipulator << endl;
+	out << "cos(Phi) = " << cos(c.argument) << myManipulator << endl;
+	out << "sin(Phi) = " << sin(c.argument) << myManipulator << endl << endl;
 	return out;
 }
 
-ofstream &operator<<(ofstream &out, Complex &obj){
-	out << "|z| = " << obj.module << myManipulator <<endl;
-	out << "cos(Phi) = " << cos(obj.argument) << myManipulator << endl;
-	out << "sin(Phi) = " << sin(obj.argument) << myManipulator << endl << endl;
+ofstream &operator<<(ofstream &out, Complex &c){
+	out << "|z| = " << c.module << myManipulator <<endl;
+	out << "cos(Phi) = " << cos(c.argument) << myManipulator << endl;
+	out << "sin(Phi) = " << sin(c.argument) << myManipulator << endl << endl;
 	return out;
 }
 
-istream &operator>>(istream &in, Complex &obj){
-	in >> obj.image >> obj.real;
+istream &operator>>(istream &in, Complex &c){
+	in >> c.image >> c.real;
 	return in;
 }
 
@@ -75,7 +75,7 @@ bool Complex::operator< (Complex c)
 	if (module > c.module) return false;
 }
 
-bool Complex::operator> (Complex c)
+bool Complex::operator>(Complex c)
 {
 	if (module > c.module) return true;
 	if (module == c.module) {
@@ -87,7 +87,7 @@ bool Complex::operator> (Complex c)
 
 int main() {
 	Complex c(1.0, 1.0);
-	cout << "c(4.0, 1.0)\n";
+	cout << "Complex c(1.0, 1.0)\n\n";
 	cout << c;
 
 	ofstream out("Complex.txt");
@@ -98,9 +98,8 @@ int main() {
 	Complex a(0.0, 0.0);
 	cout << "Enter the image and real parts of arbitrary complex number\t";
 	cin >> a;
-	a.getArgument();
 	a.getModule();
-	cout << a;
+	a.getArgument();
 
 	cout << "Result of comparison: \n";
 	if (a < c) cout << "Your number < c \n";
