@@ -61,7 +61,6 @@ ofstream &operator<<(ofstream &out, Complex &obj){
 }
 
 istream &operator>>(istream &in, Complex &obj){
-	cout << "Ener image and real part \t";
 	in >> obj.image >> obj.real;
 	return in;
 }
@@ -87,7 +86,8 @@ bool Complex::operator> (Complex c)
 }
 
 int main() {
-	Complex c(3.0, 1.0);
+	Complex c(1.0, 1.0);
+	cout << "c(4.0, 1.0)\n";
 	cout << c;
 
 	ofstream out("Complex.txt");
@@ -96,14 +96,16 @@ int main() {
 	out.close();
 
 	Complex a(0.0, 0.0);
+	cout << "Enter the image and real parts of arbitrary complex number\t";
 	cin >> a;
 	a.getArgument();
 	a.getModule();
 	cout << a;
 
-	if (a < c) cout << "a < c";
-
-
+	cout << "Result of comparison: \n";
+	if (a < c) cout << "Your number < c \n";
+	else if (a > c) cout << "Your number  > c \n";
+	else cout << "Your number = c \n";
 
 	system("pause");
 	return 0;
