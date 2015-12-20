@@ -38,36 +38,34 @@ void Complex::getModule(){
 	module = sqrt(image*image + real*real);
 }
 
-ostream &operator<<(ostream &stream, Complex &obj){
-	stream << "|z| = " << setprecision(5) << obj.module << endl;
-	stream << "cos(Phi) = " << setprecision(5) << cos(obj.argument) << endl;
-	stream << "sin(Phi) = " << setprecision(5) << sin(obj.argument) << endl << endl;
-	return stream;
+ostream &myManipulator(ostream &out){
+	out << setprecision(5);
+	return out;
 }
 
-ofstream &operator<<(ofstream &stream, Complex &obj){
-	stream << "|z| = " << setprecision(5) << obj.module << endl;
-	stream << "cos(Phi) = " << setprecision(5) << cos(obj.argument) << endl;
-	stream << "sin(Phi) = " << setprecision(5) << sin(obj.argument) << endl << endl;
-	return stream;
+ostream &operator<<(ostream &out, Complex &obj){
+	out << "|z| = " << obj.module << myManipulator << endl;
+	out << "cos(Phi) = " << cos(obj.argument) << myManipulator << endl;
+	out << "sin(Phi) = " << sin(obj.argument) << myManipulator << endl << endl;
+	return out;
 }
 
-istream &operator>>(istream &stream, Complex &obj){
-	stream >> obj.image >> obj.real;
-	return stream;
+ofstream &operator<<(ofstream &out, Complex &obj){
+	out << "|z| = " << obj.module << myManipulator <<endl;
+	out << "cos(Phi) = " << cos(obj.argument) << myManipulator << endl;
+	out << "sin(Phi) = " << sin(obj.argument) << myManipulator << endl << endl;
+	return out;
+}
+
+istream &operator>>(istream &in, Complex &obj){
+	in >> obj.image >> obj.real;
+	return in;
 }
 
 int main() {
-	Complex c(1.0, 1.0);
+	Complex c(3.0, 1.0);
 	cout << c;
 
-	Complex a = Complex(0, 0);
-	
-	cin >> a; 
-	a.getArgument(); 
-	a.getModule();
-	cout << a;
-	
 	ofstream out("Complex.txt");
 	if (!out) cout << "Can't open the file!";
 	out << c;
@@ -76,4 +74,3 @@ int main() {
 	system("pause");
 	return 0;
 }
-
