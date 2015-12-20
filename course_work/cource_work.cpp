@@ -150,8 +150,7 @@ void Database::deleteUser(int userID) {
 	bool result = 0;
 	for (int i = 0; i < data.size(); i++){
 		if (userID == data[i].userID) {
-			data.erase(data.begin() + i);// (numberOfStudent - 1) because we have vector with elements from 0...
-		// to n, but our user doesn't know it! the user thinks "i would like to delete the first student! i push the button 1" 
+			data.erase(data.begin() + i);
 			result = 1;
 		}
 	}
@@ -269,7 +268,6 @@ void printCapConsole(){
 }
 
 void clearConsole() {
-	//for (int i = 0 ; i < 100; i++) cout<<endl;
 	system("cls");
 }
 
@@ -323,8 +321,6 @@ int main() {
 	int iteam = 0;
 	int id = 0;
 	string surname;
-
-	const char separator = ' ';
 
 	do {
 		showTheMenu();
