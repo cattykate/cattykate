@@ -5,19 +5,24 @@
 using namespace std;
 
 class Complex{
-public:
-	Complex();
-	Complex(double im, double re);
+private:
 	double image;
 	double real;
 	double argument;
 	double module;
-
+public:
+	Complex();
+	Complex(double im, double re);
+	
 	void getArgument();
 	void getModule();
 
 	bool operator< (Complex c);
 	bool operator> (Complex c);
+
+	friend istream &operator>>(istream &in, Complex &c);
+	friend ofstream &operator<<(ofstream &out, Complex &c);
+	friend ostream &operator<<(ostream &out, Complex &c);
 };
 
 Complex::Complex(double im, double re){
