@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 int counter = 0;
@@ -178,8 +179,10 @@ void Database::deleteUser(string surname){
 }
 
 void Database::findUser(string surname) {
+	transform(surname.begin(), surname.end(), surname.begin(), tolower);
 	bool result = 0;
 	for (int i = 0; i < data.size(); i++){
+		transform(data[i].surname.begin(), data[i].surname.end(), data[i].surname.begin(), tolower);
 		if (surname == data[i].surname) {
 			data[i].printAllInform();
 			result = 1;
