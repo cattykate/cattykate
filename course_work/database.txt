@@ -8,3 +8,4 @@
 8	Ivashenko	Alexey	Igorevich	male	18	89037331642	llle@mail.ru	Moscow	Applied-Mathematics	4	AM-01-2011	extramural	4 5 5 5 5 	4.8	2800	
 9	Sizov	Vasily	Andreevich	male	20	89051501243	sizov@rambler.ru	Moscow	Informatics	2	IT-01-2012	full-time	4 4 4 4 4 	4	2400	
 10	Ageeva	Ekaterina	Petrovna	female	23	89251616555	katerinka@mail.ru	Tomsk	Informatics	4	MK-01-2012	full-time	5 5 5 5 5 	5	3500	
+11	Vinogradov	Vitaliy	Egorovich	male	18	89162756545	popop@rambler.ru	Moscow	Informatics	4	IT-2013	full-time	5 5 5 5 5 	5	3500	
