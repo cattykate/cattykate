@@ -201,7 +201,6 @@ void Student::getAverageScore(){
 	avg = float(sum) / score.size();
 }
 
-
 void Student::getSizeOfScholarship(){
 	int counter_of_3 = 0;
 	int counter_of_4 = 0;
@@ -229,7 +228,7 @@ void Student::printAllInform(){
 	const char separator = ' ';
 
     cout << left << setw(4) << setfill(separator) << userID;
-	cout << setw(10) << setfill(separator) << surname;
+	cout << setw(11) << setfill(separator) << surname;
 	cout << setw(10) << setfill(separator) <<name;
 	cout << setw(15) << setfill(separator) << middle_name;
 	cout << setw(8) << setfill(separator) << gender;
@@ -254,18 +253,63 @@ ostream &operator<<(ostream &out, Database &db){
 	for (int i = 0; i < db.data.size(); i++){
 		const char separator = ' ';
 		out << left << setw(4) << setfill(separator) << db.data[i].userID;
-		out << setw(10) << setfill(separator) << db.data[i].surname;
+		out << setw(11) << setfill(separator) << db.data[i].surname;
 		out << setw(10) << setfill(separator) << db.data[i].name;
 		out << setw(12) << setfill(separator) << db.data[i].phone << endl;
 		}
 	return out;
 }
 
+istream &operator>>(istream &in, Student &st){
+	cout << "Surname: "; 
+	in >> st.surname;
+
+	cout << "Name: ";
+	in >> st.name;
+
+	cout << "Middle Name: ";
+	in >> st.middle_name;
+
+	cout << "Gender: ";
+	in >> st.gender;
+
+	cout << "Age: ";
+	in >> st.age;
+
+	cout << "Phone: ";
+	in >> st.phone;
+
+	cout << "E-mail: ";
+	in >> st.email;
+
+	cout << "Hometown: ";
+	in >> st.hometown;
+
+	cout << "Specialty: ";
+	in >> st.specialty;
+
+	cout << "Course: ";
+	in >> st.course;
+
+	cout << "Group: ";
+	in >> st.group;
+
+	cout << "Form of study: ";
+	in >> st.form_of_study;
+
+	cout << "Scores: ";
+	for (int i = 0; i < 5; i++){
+		st.score.push_back(0);
+		in >> st.score[i];	
+	}
+	return in;
+}
+
 void printCapConsole(){
 	const char separator = ' ';
 
 	cout << left << setw(4) << "ID";
-	cout << setw(10) << setfill(separator) << "Surname";
+	cout << setw(11) << setfill(separator) << "Surname";
 	cout << setw(10) << setfill(separator) << "Name";
 	cout << setw(15) << setfill(separator) << "Middle name";
 	cout << setw(8) << setfill(separator) << "Gender";
@@ -333,53 +377,11 @@ int main() {
 			break;
 		case 3: {
 			Student newStudent = Student();
-			cout << "Enter the information about student" << endl;
-			cout  << "Surname: ";
-			cin >> newStudent.surname;
-			
-			cout << "Name: ";
-			cin >> newStudent.name;
-
-			cout << "Middle Name: ";
-			cin >> newStudent.middle_name;
-			
-			cout << "Gender: ";
-			cin >> newStudent.gender;
-			
-			cout << "Age: ";
-			cin >> newStudent.age;
-			
-			cout << "Phone: ";
-			cin >> newStudent.phone;
-			
-			cout << "E-mail: ";
-			cin >>  newStudent.email;
-			
-			cout << "Hometown: ";
-			cin >> newStudent.hometown;
-			
-			cout << "Specialty: ";
-			cin >> newStudent.specialty; 
-			
-			cout << "Course: ";
-			cin >> newStudent.course;
-			
-			cout << "Group: ";
-			cin >> newStudent.group;
-			
-			cout << "Form of study: ";
-			cin >> newStudent.form_of_study;
-			
-			cout << "Scores: ";
-
-			for (int i = 0; i < 5; i++){
-				newStudent.score.push_back(0);
-				cin >> newStudent.score[i];
-			} 
-			
+			cin >> newStudent;
 			newStudent.getAverageScore();
-			newStudent.getSizeOfScholarship();
+			newStudent.getSizeOfScholarship(); 
 			db.addUser(newStudent);
+			db.writeToTheFile();
 			cout << "The student is added to the database!";
 			break; }
 		case 4:
