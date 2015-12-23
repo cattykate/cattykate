@@ -7,8 +7,8 @@ int n = 0;
 
 class Vector{	
 public:
-	Vector();
-
+	Vector(int n);
+	
 	vector<int> vec;
 
 	float getModule();
@@ -25,7 +25,12 @@ float Vector::getModule() {
 	return sqrt(mod);
 }
 
-Vector::Vector() {}
+Vector::Vector(int n) {  
+	for (int i = 0; i < n; i++)
+	{
+		vec.push_back(0);
+	}
+}
 
 float operator* (Vector va, Vector vb){
 	float scal = 0.0;
@@ -42,23 +47,22 @@ float operator+ (Vector va, Vector vb){
 
 int main()
 {
-	Vector va;
-	Vector vb;
+	Vector va(100); 
+	Vector vb(100);
 
 	cout << "Enter the size of vectors: ";
 	cin >> n;
-	
+
 	cout << "Enter the vector a: ";
 	for (int i = 0; i < n; i++){
 		cin >> va.vec[i];
 	}
-	
+
 	cout << "Enter the vector b: ";
-	cin >> n;
 	for (int i = 0; i < n; i++){
 		cin >> vb.vec[i];
 	}
-	
+
 	float prAB = va + vb;
 
 	cout << "The projection of vector a on vector b = " << prAB<< endl;
