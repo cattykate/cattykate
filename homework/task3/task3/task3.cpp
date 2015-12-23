@@ -1,32 +1,39 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
-class Vector{	
-private:
-	int x;
-	int y;
+int n = 0;
 
-	float getModule();
+class Vector{	
 public:
 	Vector();
-	Vector(int xx, int yy);
+
+	vector<int> vec;
+
+	float getModule();
 
 	friend float operator* (Vector va, Vector vb);
 	friend float operator+ (Vector va, Vector vb);
 };
 
 float Vector::getModule() {
-	return sqrt(x*x + y*y);
+	float mod = 0.0;
+	for (int i = 0; i < vec.size(); i++){
+		mod = mod + vec[i] * vec[i];
+	}
+	return sqrt(mod);
 }
 
-Vector::Vector(int xx, int yy) {
-	x = xx;
-	y = yy;
-}
+Vector::Vector() {}
 
 float operator* (Vector va, Vector vb){
-	return (va.x * vb.x + va.y * vb.y);
+	float scal = 0.0;
+	for (int i = 0; i < n; i++)
+	{
+		scal = scal + va.vec[i] * vb.vec[i];
+	}
+	return scal;
 }
 
 float operator+ (Vector va, Vector vb){
@@ -35,10 +42,24 @@ float operator+ (Vector va, Vector vb){
 
 int main()
 {
-	Vector a(4, 2);
-	Vector b(-10, 0);
+	Vector va;
+	Vector vb;
 
-	float prAB = a + b;
+	cout << "Enter the size of vectors: ";
+	cin >> n;
+	
+	cout << "Enter the vector a: ";
+	for (int i = 0; i < n; i++){
+		cin >> va.vec[i];
+	}
+	
+	cout << "Enter the vector b: ";
+	cin >> n;
+	for (int i = 0; i < n; i++){
+		cin >> vb.vec[i];
+	}
+	
+	float prAB = va + vb;
 
 	cout << "The projection of vector a on vector b = " << prAB<< endl;
 
