@@ -170,7 +170,6 @@ void Database::deleteUser(string surname){
 			result = 1;
 		}
 	}
-
 	if (result == false) {
 		cout << "Student " << surname << " not found! \n" << endl;
 	}
@@ -189,7 +188,6 @@ void Database::findUser(string surname) {
 			result = 1;
 		}
 	} 
-	
 	if (result == false) {
 		cout << "Student " << surname << " not found! \n" << "Maybe this student was expelled from the university ? ;)" << endl;
 	}
@@ -202,6 +200,7 @@ void Student::getAverageScore(){
 	}
 	avg = float(sum) / score.size();
 }
+
 
 void Student::getSizeOfScholarship(){
 	int counter_of_3 = 0;
@@ -251,6 +250,17 @@ void Student::printAllInform(){
 	cout << setw(11) << scholarship << endl;
 }
 
+ostream &operator<<(ostream &out, Database &db){ 
+	for (int i = 0; i < db.data.size(); i++){
+		const char separator = ' ';
+		out << left << setw(4) << setfill(separator) << db.data[i].userID;
+		out << setw(10) << setfill(separator) << db.data[i].surname;
+		out << setw(10) << setfill(separator) << db.data[i].name;
+		out << setw(12) << setfill(separator) << db.data[i].phone << endl;
+		}
+	return out;
+}
+
 void printCapConsole(){
 	const char separator = ' ';
 
@@ -286,35 +296,15 @@ void showTheMenu(){
 		<< "2. Write the database to the file \n"
 		<< "3. Add the student to the database \n"
 		<< "4. Print the database to the screen \n"
-		<< "5. Find the student \n"
-		<< "6. Delete the student \n"
-		<< "7. Delete the database \n"
-		<< "8. Leave the app \n\n";
+		<< "5. Phonebook \n"
+		<< "6. Find the student \n"
+		<< "7. Delete the student \n"
+		<< "8. Delete the database \n"
+		<< "9. Leave the app \n\n";
 	cout << "Your choice is \t";
 }
 
 int main() {
-
-	/*Student Maria("Belova", "Maria", "Andreevna", "female", 18, "89167547685",
-		"masha@mail.ru", "Moscow", "Marketing", 1, "MK-01-2013", "e-learning", { 5, 5, 5, 5, 4 });
-	Student Elena("Petrova", "Elena", "Olegovna", "female", 20, "89178454545",
-		"lena@mail.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 3, 4, 5, 5, 4 });
-	Student Alexandra("Vlasova", "Alexandra", "Yuryevna", "female", 17, "89261554242",
-		"dtdtdtd@yandex.ru", "Saint Petersburg", "Innovations", 1, "IN-01-2012", "full-time", { 3, 3, 3, 3, 3 });
-	Student Igor("Andreev", "Igor", "Vasilievich", "male", 17, "89056554815",
-		"lena@mail.ru", "Kirov", "Innovations", 2, "IN-01-2012", "full-time", { 5, 5, 5, 5, 5 });
-	Student Margarita("Eliseeva", "Margarita", "Alexeevna", "female", 22, "89031564852",
-		"marggggo@yandex.ru", "Moscow", "Marketing", 2, "MK-01-2012", "full-time", { 4, 4, 5, 5, 4 });
-	Student Vitali("Ivanov", "Vitali", "Olegovich", "male", 21, "89257711525",
-		"ivanov@mail.ru", "Saint Petersburg", "Applied Mathematics", 3, "AM-01-2012", "full-time", { 3, 4, 4, 5, 4 });
-	Student Alexandr("Kirilov", "Alexandr", "Alexandrovich", "male", 18, "89851554697",
-		"alex232@mail.ru", "Moscow", "Marketing", 2, "MK-02-2012", "full-time", { 3, 5, 5, 5, 5 });
-	Student Alexey("Ivashenko", "Alexey", "Igorevich", "male", 18, "89037331642",
-		"llle@mail.ru", "Moscow", "Applied Mathematics", 4, "AM-01-2011", "extramural", { 4, 5, 5, 5, 5 });
-	Student Vasily("Sizov", "Vasily", "Andreevich", "male", 20, "89051501243",
-		"sizov@rambler.ru", "Moscow", "Information Systems and Technology", 2, "IT-01-2012", "full-time", { 4, 4, 4, 4, 4 }); 
-	Student Ekaterina("Ageeva", "Ekaterina", "Petrovna", "female", 23, "89251616555",
-		"katerinka@mail.ru", "Tomsk", "Information Systems and Technology", 4, "MK-01-2012", "full-time", { 5, 5, 5, 5, 5 }); */
 
 	Database db;
 	db.readFromTheFile();
@@ -339,7 +329,7 @@ int main() {
 			break;
 		case 2:
 			db.writeToTheFile();
-			cout << "ok!" << endl;
+			cout << "Ok!" << endl;
 			break;
 		case 3: {
 			Student newStudent = Student();
@@ -397,12 +387,18 @@ int main() {
 			db.printDB();
 			break;
 		case 5:
+			cout << endl << "==========================================\n\n";
+			cout << "Phonebook \n\n";
+			cout << endl << "==========================================" << endl;
+			cout << db;
+			break;
+		case 6:
 			cout << "Please, enter the surname: \b";
 			cin >> surname;
 			clearConsole();
 			db.findUser(surname);
 			break;
-		case 6:
+		case 7:
 			cout << "ID- 1, Surname - 2: ";
 			cin >> iteam;
 			clearConsole();
@@ -426,17 +422,17 @@ int main() {
 				break;
 			}
 			break;
-		case 7: 
+		case 8: 
 			db.deleteDB();
 			cout << "The database is clear!" << endl;
 			break;
-		case 8:
+		case 9:
 			break;
 		default:
 			cout << "Please! Enter 1, 2, 3, 4, 5, 6, 7!" << endl;
 			break;
 		} 
-	} while (iteam != 8);
+	} while (iteam != 9);
 	
 	return 0;
 }
