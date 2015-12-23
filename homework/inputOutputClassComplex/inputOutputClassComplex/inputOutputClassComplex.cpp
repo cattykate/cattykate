@@ -23,7 +23,6 @@ public:
 Complex::Complex(double im, double re){
 	image = im;
 	real = re;
-
 	getArgument();
 	getModule();
 }
@@ -86,14 +85,32 @@ bool Complex::operator>(Complex c)
 }
 
 int main() {
+
 	Complex c(1.0, 1.0);
 	cout << "Complex c(1.0, 1.0)\n\n";
 	cout << c;
 
 	ofstream out("Complex.txt");
-	if (!out) cout << "Can't open the file!";
-	out << c;
-	out.close();
+	if (!out) {
+		cout << "Can't open the file!" << endl;
+		system("pause");
+		return 1;
+	}
+	out << c; // Write to the file
+
+	out.close(); 
+	
+	ifstream in("Complex.txt");
+	if (!in) {
+		cout << "Can't open the file ;(" << endl;
+		system("pause");
+		return 1;
+	}
+	in >> c; // Read from the file
+	cout << "We read from the file: " << endl;
+	cout << c;
+
+	in.close();
 
 	Complex a(0.0, 0.0);
 	cout << "Enter the image and real parts of arbitrary complex number\t";
