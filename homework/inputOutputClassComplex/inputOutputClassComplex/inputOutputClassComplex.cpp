@@ -42,14 +42,14 @@ void Complex::getModule(){
 }
 
 ostream &myManipulator(ostream &out){
-	out << setprecision(5);
+	 out << scientific << setprecision(5);
 	return out;
 }
 
 ostream &operator<<(ostream &out, Complex &c){
-	out << "|z| = " << c.module << myManipulator << endl;
-	out << "cos(Phi) = " << cos(c.argument) << myManipulator << endl;
-	out << "sin(Phi) = " << sin(c.argument) << myManipulator << endl << endl;
+	out << "|z| = " << myManipulator <<  c.module  << endl;
+	out << "cos(Phi) = " << myManipulator << cos(c.argument)  << endl;
+	out << "sin(Phi) = " << myManipulator << sin(c.argument)  << endl << endl;
 	return out;
 }
 
