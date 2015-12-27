@@ -21,7 +21,7 @@ private:
 template < class T >
 class KateList {
 private:
-	T* listPtr;
+	T* listPtr; // array of objects T
 	int size;
 public:
 	KateList(int s) : size(s), listPtr(new T[s]) {
