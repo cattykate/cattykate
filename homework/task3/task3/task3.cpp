@@ -3,71 +3,70 @@
 #include <vector>
 using namespace std;
 
-int n = 0;
-
-class Vector{	
+class Vector{
 public:
-	Vector(int n);
-	
-	vector<int> vec;
+    Vector(int n);
+ 
+    int* vec;
+    int size;
 
-	float getModule();
+    float getModule();
 
-	friend float operator* (Vector va, Vector vb);
-	friend float operator+ (Vector va, Vector vb);
+    friend float operator* (Vector va, Vector vb);
+    friend float operator+ (Vector va, Vector vb);
 };
 
 float Vector::getModule() {
-	float mod = 0.0;
-	for (int i = 0; i < vec.size(); i++){
-		mod = mod + vec[i] * vec[i];
-	}
-	return sqrt(mod);
+    float mod = 0.0;
+    for (int i = 0; i < size; i++){
+        mod = mod + vec[i] * vec[i];
+    }
+    return sqrt(mod);
 }
 
-Vector::Vector(int n) {  
-	for (int i = 0; i < n; i++)
-	{
-		vec.push_back(0);
-	}
+Vector::Vector(int n) {
+
+    size = n;
+    vec = new int[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        vec[i] = 0;
+    }
 }
 
 float operator* (Vector va, Vector vb){
-	float scal = 0.0;
-	for (int i = 0; i < n; i++)
-	{
-		scal = scal + va.vec[i] * vb.vec[i];
-	}
-	return scal;
+    float scal = 0.0;
+    for (int i = 0; i < va.size; i++)
+    {
+        scal = scal + va.vec[i] * vb.vec[i];
+    }
+    return scal;
 }
 
 float operator+ (Vector va, Vector vb){
-	return va * vb / vb.getModule();
+    return va * vb / vb.getModule();
 }
 
 int main()
 {
-	Vector va(100); 
-	Vector vb(100);
+    Vector va(4);
+    Vector vb(4);
 
-	cout << "Enter the size of vectors: ";
-	cin >> n;
+    va.vec[0] = 1;
+    va.vec[1] = 1;
+    va.vec[2] = 1;
+	va.vec[3] = 1;
 
-	cout << "Enter the vector a: ";
-	for (int i = 0; i < n; i++){
-		cin >> va.vec[i];
-	}
+    vb.vec[0] = 1;
+    vb.vec[1] = 1;
+    vb.vec[2] = 1;
+	vb.vec[3] = 1;
 
-	cout << "Enter the vector b: ";
-	for (int i = 0; i < n; i++){
-		cin >> vb.vec[i];
-	}
+    float prAB = va + vb;
 
-	float prAB = va + vb;
+    cout << "The projection of vector a on vector b = " << prAB << endl;
 
-	cout << "The projection of vector a on vector b = " << prAB<< endl;
-
-	system("pause");
 	return 0;
 }
 
