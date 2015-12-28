@@ -9,6 +9,7 @@ public:
 	}
 	virtual void show() {
 		cout << "a1 " << endl;
+		cout << a1 << endl;
 	}
 protected :
 	int a1;
@@ -22,6 +23,7 @@ public:
 	}
 	virtual void show() {
 		cout << "a2" << endl;
+		cout << a2 << endl;
 	}
 protected:
 	int a2;
@@ -35,6 +37,7 @@ public:
 	}
 	virtual void show() {
 		cout << "a3" << endl;
+		cout << a3 << endl;
 	}
 protected:
 	int a3;
@@ -48,6 +51,7 @@ public:
 	}
 	virtual void show()  override {
 		cout << "b1, a1, a2, a3 " << endl;
+		cout << b1 << " " << a1 << " " << a2 << " " << a3 << endl;
 	}
 protected:
 	int b1;
@@ -61,6 +65,7 @@ public:
 	}
 	virtual void show() override {
 		cout << "b2, a1, a2, a3 " << endl;
+		cout << b2 << " " << a1 << " " << a2 << " " << a3 << endl;
 	}
 protected:
 	int b2;
@@ -74,6 +79,7 @@ public:
 	}
 	virtual void show()  override {
 		cout << "b3, a1, a2, a3 " << endl;
+		cout << b3 << " " << a1 << " " << a2 << " " << a3 << endl;
 	}
 protected:
 	int b3;
@@ -87,17 +93,18 @@ public:
 	}
 	void show() override {
 		cout << "c1, b1, b2, b3" << endl;
+		cout << c1 << " " << b1 << " " << b2 << " " << b3 << endl;
 	}
 protected:
 	int c1;
 };
 
 int main() {
-	C1 c1obj(3, 1, 1, 1, 1, 1, 1);
+	C1 c1obj = C1(7, 1, 2, 3, 4, 5, 6);
 	c1obj.print();
 	c1obj.show();
 
-	B1 b1obj = B1(2, 2, 2, 2);
+	B1 b1obj = B1(4, 1, 2, 3);
 	b1obj.print();
 	b1obj.show();
 
