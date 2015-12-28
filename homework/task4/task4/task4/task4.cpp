@@ -46,7 +46,7 @@ public:
 	virtual void print() {
 		cout << "class B1: " << b1 << endl;
 	}
-	virtual void show() {
+	virtual void show()  override {
 		cout << "b1, a1, a2, a3 " << endl;
 	}
 protected:
@@ -59,7 +59,7 @@ public:
 	virtual void print() {
 		cout << "class B2: " << b2 << endl;
 	}
-	virtual void show(){
+	virtual void show() override {
 		cout << "b2, a1, a2, a3 " << endl;
 	}
 protected:
@@ -72,7 +72,7 @@ public:
 	virtual void print() {
 		cout << "class B3: " << b3 << endl;
 	}
-	virtual void show(){
+	virtual void show()  override {
 		cout << "b3, a1, a2, a3 " << endl;
 	}
 protected:
@@ -85,15 +85,25 @@ public:
 	void print() {
 		cout << "class C1: " << c1 << endl;
 	}
-	void show(){
+	void show() override {
 		cout << "c1, b1, b2, b3" << endl;
 	}
 protected:
 	int c1;
 };
 
-
 int main() {
+	C1 c1obj(3, 1, 1, 1, 1, 1, 1);
+	c1obj.print();
+	c1obj.show();
 
+	B1 b1obj = B1(2, 2, 2, 2);
+	b1obj.print();
+	b1obj.show();
 
+	A1 a1obj = A1(1);
+	a1obj.print();
+	a1obj.show();
+
+	return 0;
 }
