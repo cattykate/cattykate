@@ -5,11 +5,6 @@ using namespace std;
 #define WHAT_SIZE 2
 
 template <typename T>
-void print(T arg) {
-	std::cout << arg << std::endl;
-}
-
-template <typename T>
 int first_index_of(T* when, T* what, int index) {
 
 	for (int i = index; i < WHEN_SIZE; i++) {
