@@ -42,7 +42,7 @@ protected:
 
 class B1 : public A1, A2, A3 {
 public:
-	B1(int bval, int a1val, int a2val, int a3val) : b1(bval), A1 (a1val), A2(a2val), A3(a3val) {};
+	B1(int bval, int a1val, int a2val, int a3val) : b1(bval), A1(a1val), A2(a2val), A3(a3val) {};
 	virtual void print() {
 		cout << "class B1: " << b1 << endl;
 	}
@@ -53,9 +53,33 @@ protected:
 	int b1;
 };
 
+class B2 : public A1, A2, A3 {
+public:
+	B2(int bval, int a1val, int a2val, int a3val) : b2(bval), A1(a1val), A2(a2val), A3(a3val) {};
+	virtual void print() {
+		cout << "class B2: " << b2 << endl;
+	}
+	virtual void show(){
+		cout << "b2, a1, a2, a3 " << endl;
+	}
+protected:
+	int b2;
+};
+
+class B3 : public A1, A2, A3 { 
+public:
+	B3(int bval, int a1val, int a2val, int a3val) : b3(bval), A1(a1val), A2(a2val), A3(a3val) {};
+	virtual void print() {
+		cout << "class B2: " << b3 << endl;
+	}
+	virtual void show(){
+		cout << "b3, a1, a2, a3 " << endl;
+	}
+protected:
+	int b3;
+};
 
 
 int main() {
-	A1 aobj;
-	aobj.
+
 }
