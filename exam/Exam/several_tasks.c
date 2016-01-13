@@ -19,17 +19,44 @@ void sortBubble(int arr[], int size){
 	}
 }
 
+void sortSelection(int arr[], int size){
+
+	int pos = 0;
+	int min = 0;
+	
+	for (int j = 0; j < SIZE; j++){
+		pos = j;
+		min = arr[j];
+
+		for (int i = j+1; i < SIZE; i++){
+			if (arr[i] < min)
+			{
+				pos = i;
+				min = arr[i];
+			}
+		}
+		arr[pos] = arr[j];
+		arr[j] = min;
+	}
+	for (int i = 0; i < SIZE; i++){
+		printf("%d ", arr[i]);
+	}
+}
+
 int main()
 {
 	const int size = SIZE;
-	int arr[SIZE] = { 1, 2, 4, 5, 6, 7, 3 };
+	int arr[SIZE] = { 3, 2, 4, 5, 6, 7, 1 };
 
 	for (int i = 0; i < SIZE; i++){
 		printf("%d ", arr[i]);
 	}
 
 	printf("\nArray after sort \n");
-	sortBubble(arr, size);
+//	sortBubble(arr, size);
+	
+	sortSelection(arr, size);
+	
 
 	return 0;
 }
