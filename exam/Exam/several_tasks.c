@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #define SIZE 7
 
-void sortBubble(int arr[], int size){
+void sortBubble(int arr[]){
 
 	int temp = 0;
 
@@ -19,7 +19,7 @@ void sortBubble(int arr[], int size){
 	}
 }
 
-void sortSelection(int arr[], int size){
+void sortSelection(int arr[]){
 
 	int pos = 0;
 	int min = 0;
@@ -43,7 +43,7 @@ void sortSelection(int arr[], int size){
 	}
 }
 
-void sortInsertion(int arr[], int size) {
+void sortInsertion(int arr[]) {
 	int temp = 0;
 	for (int i = 1; i < SIZE; i++) {
 		for (int j = i; j>0 && arr[j - 1]>arr[j]; j--) {
@@ -58,19 +58,44 @@ void sortInsertion(int arr[], int size) {
 }
 
 
+#define NSIZE 2
+
+void replaceSubstring(char str[], char substr[], char newsubstr[]){
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < NSIZE; j++){
+			if (str[i] == substr[j] && str[i + 1] == substr[j + 1]){
+				str[i] = newsubstr[j];
+				str[i + 1] = newsubstr[j + 1];
+			}
+		}
+	}
+	for (int i = 0; i < SIZE; i++){
+		printf("%c ", str[i]);
+	}
+}
+
 int main()
 {
-	const int size = SIZE;
 	int arr[SIZE] = { 3, 2, 4, 5, 6, 7, 1 };
 
 	for (int i = 0; i < SIZE; i++){
 		printf("%d ", arr[i]);
 	}
 
-	printf("\nArray after sort \n");
-	//sortBubble(arr, size);
-	//sortSelection(arr, size);
-	sortInsertion(arr, size);
+	printf("\nResult \n");
+	sortBubble(arr);
+	//sortSelection(arr);
+	//sortInsertion(arr);
+
+	char str[SIZE] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
+	char substr[NSIZE] = { 'd', 'e' };
+	char newsubstr[NSIZE] = { 'o', 'k' };
+
+
+	printf("\nResult \n");
+	replaceSubstring(str, substr, newsubstr);
+
 
 	return 0;
 }
