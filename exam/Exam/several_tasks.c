@@ -88,6 +88,23 @@ void swapElem(int arr[]){
 	}
 }
 
+void exchangeForNullNotDevisorOfMaxElem(int arr[]){
+	int max = arr[0];
+	for (int i = 1; i < SIZE; i++){
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+	}
+		for (int i = 0; i < SIZE; i++){
+			if (max%arr[i] != 0){
+				arr[i] = 0;
+			}
+		}
+			for (int i = 0; i < SIZE; i++){
+				printf("%d ", arr[i]);
+			}
+}
+
 void swapMinMax(int arr[]){
 	int max = arr[0];
 	int min = arr[0];
@@ -157,7 +174,8 @@ int main()
 	//sortSelection(arr);
 	//sortInsertion(arr);
 	//swapElem(arr);
-	swapMinMax(arr);
+	//swapMinMax(arr);
+	exchangeForNullNotDevisorOfMaxElem(arr);
 	
 	char str[SIZE] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
 	char substr[NSIZE] = { 'd', 'e' };
@@ -167,6 +185,6 @@ int main()
 	//replaceSubstring(str, substr, newsubstr);
 	//res = calculateSum(arr);
 	//res = calculateSumPositiveOddInd(arr);
-	res = calculateMax(arr);
+	//res = calculateMax(arr);
 	return 0;
 }
