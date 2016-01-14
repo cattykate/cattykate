@@ -59,7 +59,7 @@ void sortInsertion(int arr[]) {
 
 
 #define NSIZE 2
-
+//bad!!!!!!!!! only equal number of characters in substrings
 void replaceSubstring(char str[], char substr[], char newsubstr[]){
 	for (int i = 0; i < SIZE; i++)
 	{
