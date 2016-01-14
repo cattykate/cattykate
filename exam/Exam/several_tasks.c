@@ -1,5 +1,7 @@
 #include <stdlib.h>
+
 #define SIZE 8
+#define NSIZE 2
 
 void sortBubble(int arr[]){
 
@@ -12,6 +14,7 @@ void sortBubble(int arr[]){
 				arr[j+1] = arr[j];
 				arr[j] = temp;
 			}
+
 		}
 	}
 	for (int i = 0; i < SIZE; i++){
@@ -43,6 +46,13 @@ void sortSelection(int arr[]){
 	}
 }
 
+void returnReverseOrder(int arr[])
+{
+	for (int i = (SIZE - 1); i >= 0; i--){
+		printf("%d ", arr[i]);
+	}
+}
+
 void sortInsertion(int arr[]) {
 	int temp = 0;
 	for (int i = 1; i < SIZE; i++) {
@@ -57,8 +67,6 @@ void sortInsertion(int arr[]) {
 	}
 }
 
-
-#define NSIZE 2
 //bad!!!!!!!!! only equal number of characters in substrings
 void replaceSubstring(char str[], char substr[], char newsubstr[]){
 	for (int i = 0; i < SIZE; i++)
@@ -103,6 +111,31 @@ void exchangeForNullNotDevisorOfMaxElem(int arr[]){
 			for (int i = 0; i < SIZE; i++){
 				printf("%d ", arr[i]);
 			}
+}
+
+//First there are all positive elems then are negative
+void changeOrder(int arr[]){
+
+	int newarr[SIZE] = { 0 };
+
+	int j = 0;
+	for (int i = 0; i < SIZE; i++){
+		if (arr[i] >= 0) {
+			newarr[j] = arr[i];
+			j++;
+		}
+	}
+
+	for (int i = 0; i < SIZE; i++){
+		if (arr[i] < 0){
+			newarr[j] = arr[i];
+			j++;
+		}
+	}
+
+	for (int i = 0; i < SIZE; i++){
+		printf("%d ", newarr[i]);
+	}
 }
 
 void swapMinMax(int arr[]){
@@ -163,7 +196,7 @@ int calculateSumPositiveOddInd(int arr[]){
 
 int main()
 {
-	int arr[SIZE] = { 3, 2, 1, 5, 6, 7, 4, 8 };
+	int arr[SIZE] = { -3, -2, 1, 5, 6, 7, 4, 8 };
 
 	for (int i = 0; i < SIZE; i++){
 		printf("%d ", arr[i]);
@@ -175,7 +208,9 @@ int main()
 	//sortInsertion(arr);
 	//swapElem(arr);
 	//swapMinMax(arr);
-	exchangeForNullNotDevisorOfMaxElem(arr);
+	//exchangeForNullNotDevisorOfMaxElem(arr);
+	//changeOrder(arr);
+	returnReverseOrder(arr);
 	
 	char str[SIZE] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
 	char substr[NSIZE] = { 'd', 'e' };
