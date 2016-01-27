@@ -8,10 +8,10 @@ int main()
 {
 	int n = 0;
 
-	cout << "Enter the number of vertices " << std::endl;
+	cout << "Enter the number of vertices " << endl;
 	cin >> n;
 
-	cout << "Enter graph's matrix" << std::endl;
+	cout << "Enter graph's matrix" << endl;
 
 	int v[n][n];
 	for (int i = 0; i < n; ++i)
@@ -24,12 +24,12 @@ int main()
 
 	int s = 0;
 
-	cout << "Enter the start vertex" << std::endl;
+	cout << "Enter the start vertex" << endl;
 	cin >> s;
 
 	int t = 0;
 
-	cout << "Enter the needed vertex" << std::endl;
+	cout << "Enter the needed vertex" << endl;
 	cin >> t;
 
 	bool f[n];
