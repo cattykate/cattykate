@@ -23,13 +23,18 @@ int main() {
 	//	cout << "You can enter only 1, 2, 3\n";
 	//}
 
-	double sq_root = 0;
 
-	for (int num = 1; num < 100; num++) {
-		sq_root = sqrt((double)num);
-		cout << num << " " << sq_root << endl;
+
+	//double sq_root = 0;
+
+	//for (int num = 1; num < 100; num++) {
+	//	sq_root = sqrt((double)num);
+	//	cout << num << " " << sq_root << endl;
+	//}
+
+	for (int x = 0, y = 10; x <= y; ++x, --y) {
+		cout << x << " " << y << endl;
 	}
-
 
 	system("pause");
 	return 0;
