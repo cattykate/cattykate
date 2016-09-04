@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
+//using namespace std;
 
 int main() {
 	//int num = 0;
@@ -32,9 +32,18 @@ int main() {
 	//	cout << num << " " << sq_root << endl;
 	//}
 
-	for (int x = 0, y = 10; x <= y; ++x, --y) {
+	/*for (int x = 0, y = 10; x <= y; ++x, --y) {
 		cout << x << " " << y << endl;
+	}*/
+
+
+	unsigned char ch = 1;
+
+	while (ch) { // test for equality to zero
+		std::cout << ch;
+		ch++;
 	}
+
 
 	system("pause");
 	return 0;
